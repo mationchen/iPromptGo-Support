@@ -1,0 +1,606 @@
+{
+  "version": "1.0",
+  "categories": [
+    {
+      "key": "subject",
+      "name": { "zh": "主体", "en": "Subject" },
+      "order": 1,
+      "subCategories": [
+        {
+          "key": "person",
+          "name": { "zh": "人物", "en": "Person" },
+          "keywords": [
+            { "id": "girl", "zh": "年轻女孩", "en": "a young girl" },
+            { "id": "old_man", "zh": "老人", "en": "an old man" },
+            { "id": "couple", "zh": "情侣", "en": "a couple" },
+            { "id": "dancer", "zh": "舞者", "en": "a dancer" },
+            { "id": "samurai", "zh": "武士", "en": "a samurai" },
+            { "id": "astronaut", "zh": "宇航员", "en": "an astronaut" },
+            { "id": "queen", "zh": "女王", "en": "a queen" },
+            { "id": "child", "zh": "小孩", "en": "a child" }
+          ]
+        },
+        {
+          "key": "animal",
+          "name": { "zh": "动物", "en": "Animal" },
+          "keywords": [
+            { "id": "cat", "zh": "猫", "en": "a cat" },
+            { "id": "wolf", "zh": "狼", "en": "a wolf" },
+            { "id": "phoenix", "zh": "凤凰", "en": "a phoenix" },
+            { "id": "dragon", "zh": "龙", "en": "a dragon" },
+            { "id": "fox", "zh": "狐狸", "en": "a fox" },
+            { "id": "horse", "zh": "马", "en": "a horse" },
+            { "id": "bird", "zh": "鸟", "en": "a bird" }
+          ]
+        },
+        {
+          "key": "still_life",
+          "name": { "zh": "静物", "en": "Still Life" },
+          "keywords": [
+            { "id": "teacup", "zh": "茶杯", "en": "a teacup" },
+            { "id": "book", "zh": "书", "en": "a book" },
+            { "id": "flower", "zh": "花", "en": "a flower" },
+            { "id": "vintage_camera", "zh": "复古相机", "en": "a vintage camera" },
+            { "id": "candle", "zh": "蜡烛", "en": "a candle" },
+            { "id": "fruit", "zh": "水果", "en": "fruits" }
+          ]
+        },
+        {
+          "key": "scene",
+          "name": { "zh": "场景", "en": "Scene" },
+          "keywords": [
+            { "id": "city_street", "zh": "城市街道", "en": "city street" },
+            { "id": "forest", "zh": "森林", "en": "forest" },
+            { "id": "cafe", "zh": "咖啡馆", "en": "cafe interior" },
+            { "id": "mountain", "zh": "山顶", "en": "mountain peak" },
+            { "id": "beach", "zh": "海滩", "en": "beach" },
+            { "id": "desert", "zh": "沙漠", "en": "desert" },
+            { "id": "underwater", "zh": "水下", "en": "underwater" },
+            { "id": "space", "zh": "太空", "en": "outer space" }
+          ]
+        },
+        {
+          "key": "abstract",
+          "name": { "zh": "抽象", "en": "Abstract" },
+          "keywords": [
+            { "id": "geometric", "zh": "几何图形", "en": "geometric shapes" },
+            { "id": "liquid_metal", "zh": "液态金属", "en": "liquid metal" },
+            { "id": "fractal", "zh": "分形", "en": "fractal" },
+            { "id": "galaxy", "zh": "星系漩涡", "en": "galaxy swirl" }
+          ]
+        },
+        {
+          "key": "action",
+          "name": { "zh": "动作", "en": "Action" },
+          "keywords": [
+            { "id": "running", "zh": "奔跑", "en": "running" },
+            { "id": "dancing", "zh": "跳舞", "en": "dancing" },
+            { "id": "reading", "zh": "阅读", "en": "reading" },
+            { "id": "cooking", "zh": "烹饪", "en": "cooking" },
+            { "id": "flying", "zh": "飞翔", "en": "flying" },
+            { "id": "fighting", "zh": "战斗", "en": "fighting" },
+            { "id": "smiling", "zh": "微笑", "en": "smiling" },
+            { "id": "gazing", "zh": "凝视", "en": "gazing" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "style",
+      "name": { "zh": "风格", "en": "Style" },
+      "order": 2,
+      "subCategories": [
+        {
+          "key": "photography",
+          "name": { "zh": "摄影", "en": "Photography" },
+          "keywords": [
+            { "id": "photorealistic", "zh": "写实摄影", "en": "photorealistic, RAW photo" },
+            { "id": "cinematic", "zh": "电影感", "en": "cinematic, film still" },
+            { "id": "product_photo", "zh": "产品摄影", "en": "product photography" }
+          ]
+        },
+        {
+          "key": "illustration",
+          "name": { "zh": "插画", "en": "Illustration" },
+          "keywords": [
+            { "id": "concept_art", "zh": "概念插画", "en": "concept art, artstation" },
+            { "id": "digital_illustration", "zh": "数字插画", "en": "digital illustration" },
+            { "id": "minimalist", "zh": "极简平面", "en": "minimalist, flat design" }
+          ]
+        },
+        {
+          "key": "painting",
+          "name": { "zh": "绘画", "en": "Painting" },
+          "keywords": [
+            { "id": "oil", "zh": "油画", "en": "oil painting, impressionism" },
+            { "id": "watercolor", "zh": "水彩", "en": "watercolor, soft washes" },
+            { "id": "ink", "zh": "国风水墨", "en": "Chinese ink painting, gongbi, xieyi" }
+          ]
+        },
+        {
+          "key": "anime",
+          "name": { "zh": "动漫", "en": "Anime" },
+          "keywords": [
+            { "id": "anime_style", "zh": "动漫", "en": "anime, cel shading" },
+            { "id": "studio_ghibli", "zh": "吉卜力风格", "en": "studio ghibli" },
+            { "id": "comic", "zh": "漫画风格", "en": "comic book, manga style" }
+          ]
+        },
+        {
+          "key": "3d_render",
+          "name": { "zh": "3D渲染", "en": "3D Render" },
+          "keywords": [
+            { "id": "3d_render", "zh": "3D渲染", "en": "3D render, octane render" },
+            { "id": "unreal", "zh": "虚幻引擎", "en": "unreal engine 5" },
+            { "id": "pixel_art", "zh": "像素风", "en": "pixel art, 16-bit" }
+          ]
+        },
+        {
+          "key": "style_punk",
+          "name": { "zh": "科幻", "en": "Sci-Fi" },
+          "keywords": [
+            { "id": "cyberpunk", "zh": "赛博朋克", "en": "cyberpunk, neon noir" },
+            { "id": "steampunk", "zh": "蒸汽朋克", "en": "steampunk, victorian" },
+            { "id": "ukiyoe", "zh": "浮世绘", "en": "ukiyo-e, japanese woodblock print" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "environment",
+      "name": { "zh": "环境氛围", "en": "Environment & Mood" },
+      "order": 3,
+      "subCategories": [
+        {
+          "key": "weather",
+          "name": { "zh": "天气", "en": "Weather" },
+          "keywords": [
+            { "id": "rainy", "zh": "雨天", "en": "rainy, rain-soaked" },
+            { "id": "snowy", "zh": "雪天", "en": "snowy, snowfall" },
+            { "id": "foggy", "zh": "雾天", "en": "foggy, misty" },
+            { "id": "stormy", "zh": "风暴", "en": "stormy, thunderstorm" },
+            { "id": "sunny", "zh": "晴朗", "en": "sunny, clear sky" }
+          ]
+        },
+        {
+          "key": "time",
+          "name": { "zh": "时间", "en": "Time" },
+          "keywords": [
+            { "id": "dawn", "zh": "黎明", "en": "dawn" },
+            { "id": "golden_hour", "zh": "黄金时刻", "en": "golden hour" },
+            { "id": "midday", "zh": "正午", "en": "midday" },
+            { "id": "sunset", "zh": "黄昏", "en": "sunset, dusk" },
+            { "id": "blue_hour", "zh": "蓝色时刻", "en": "blue hour" },
+            { "id": "night", "zh": "夜晚", "en": "night, nighttime" }
+          ]
+        },
+        {
+          "key": "season",
+          "name": { "zh": "季节", "en": "Season" },
+          "keywords": [
+            { "id": "spring", "zh": "春天", "en": "spring" },
+            { "id": "summer", "zh": "夏天", "en": "summer" },
+            { "id": "autumn", "zh": "秋天", "en": "autumn, autumn leaves" },
+            { "id": "winter", "zh": "冬天", "en": "winter, winter snow" }
+          ]
+        },
+        {
+          "key": "location",
+          "name": { "zh": "地点", "en": "Location" },
+          "keywords": [
+            { "id": "urban", "zh": "城市", "en": "urban, city" },
+            { "id": "rural", "zh": "乡村", "en": "rural, countryside" },
+            { "id": "mountain_env", "zh": "山区", "en": "mountain" },
+            { "id": "forest_env", "zh": "森林", "en": "forest" },
+            { "id": "beach_env", "zh": "海滩", "en": "beach, seaside" }
+          ]
+        },
+        {
+          "key": "mood",
+          "name": { "zh": "情绪氛围", "en": "Mood" },
+          "keywords": [
+            { "id": "mysterious", "zh": "神秘", "en": "mysterious" },
+            { "id": "joyful", "zh": "欢快", "en": "joyful, cheerful" },
+            { "id": "melancholic", "zh": "忧郁", "en": "melancholic" },
+            { "id": "peaceful", "zh": "宁静", "en": "peaceful, serene" },
+            { "id": "dramatic", "zh": "戏剧化", "en": "dramatic" },
+            { "id": "dreamy", "zh": "梦幻", "en": "dreamy, ethereal" },
+            { "id": "nostalgic", "zh": "怀旧", "en": "nostalgic" },
+            { "id": "romantic", "zh": "浪漫", "en": "romantic" },
+            { "id": "surreal", "zh": "超现实", "en": "surreal" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lighting",
+      "name": { "zh": "灯光", "en": "Lighting" },
+      "order": 4,
+      "subCategories": [
+        {
+          "key": "light_types",
+          "name": { "zh": "灯光类型", "en": "Light Type" },
+          "keywords": [
+            { "id": "natural", "zh": "自然光", "en": "natural light, soft daylight" },
+            { "id": "golden_hour_light", "zh": "黄金时刻光", "en": "golden hour lighting" },
+            { "id": "blue_hour_light", "zh": "蓝色时刻光", "en": "blue hour glow" },
+            { "id": "neon", "zh": "霓虹灯", "en": "neon lights, neon glow" },
+            { "id": "backlit", "zh": "逆光", "en": "backlit, rim light" },
+            { "id": "side_light", "zh": "侧光", "en": "side lighting, dramatic shadows" },
+            { "id": "rembrandt", "zh": "伦勃朗光", "en": "rembrandt lighting, chiaroscuro" },
+            { "id": "volumetric", "zh": "体积光", "en": "volumetric light, god rays" },
+            { "id": "candlelight", "zh": "烛光", "en": "candlelight, warm orange glow" },
+            { "id": "moonlight", "zh": "月光", "en": "moonlight, cold blue" },
+            { "id": "studio_flash", "zh": "影棚闪光", "en": "studio strobe, flash" },
+            { "id": "soft_light", "zh": "柔光", "en": "soft diffused light" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "color",
+      "name": { "zh": "色彩", "en": "Color Palette" },
+      "order": 5,
+      "subCategories": [
+        {
+          "key": "color_types",
+          "name": { "zh": "色彩风格", "en": "Color Style" },
+          "keywords": [
+            { "id": "warm_tones", "zh": "暖色调", "en": "warm tones, warm palette" },
+            { "id": "cool_tones", "zh": "冷色调", "en": "cool tones, cold palette" },
+            { "id": "morandi", "zh": "莫兰迪色", "en": "morandi colors, dusty pastels" },
+            { "id": "vivid", "zh": "高饱和", "en": "vivid colors, highly saturated" },
+            { "id": "desaturated", "zh": "低饱和", "en": "desaturated, washed out" },
+            { "id": "monochrome", "zh": "黑白", "en": "black and white, monochrome" },
+            { "id": "complementary", "zh": "互补撞色", "en": "complementary colors" },
+            { "id": "retro_70s", "zh": "复古70年代", "en": "retro 70s colors" },
+            { "id": "neon_colors", "zh": "霓虹色", "en": "neon pink, electric blue" },
+            { "id": "sunset_orange", "zh": "落日橙红", "en": "sunset orange and red" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "camera",
+      "name": { "zh": "镜头构图", "en": "Camera & Composition" },
+      "order": 6,
+      "subCategories": [
+        {
+          "key": "lens",
+          "name": { "zh": "镜头焦距", "en": "Lens" },
+          "keywords": [
+            { "id": "wide_angle", "zh": "广角16mm", "en": "wide-angle 16mm" },
+            { "id": "35mm", "zh": "35mm", "en": "35mm" },
+            { "id": "50mm", "zh": "50mm", "en": "50mm" },
+            { "id": "85mm", "zh": "人像85mm", "en": "portrait 85mm" },
+            { "id": "telephoto_200mm", "zh": "长焦200mm", "en": "telephoto 200mm" },
+            { "id": "macro", "zh": "微距", "en": "macro lens" },
+            { "id": "fisheye", "zh": "鱼眼", "en": "fisheye" }
+          ]
+        },
+        {
+          "key": "depth_of_field",
+          "name": { "zh": "景深", "en": "Depth of Field" },
+          "keywords": [
+            { "id": "shallow_dof", "zh": "浅景深", "en": "shallow depth of field, bokeh" },
+            { "id": "deep_focus", "zh": "深景深", "en": "deep focus" },
+            { "id": "f14", "zh": "大光圈f/1.4", "en": "f/1.4 wide aperture" }
+          ]
+        },
+        {
+          "key": "angle",
+          "name": { "zh": "视角", "en": "Angle" },
+          "keywords": [
+            { "id": "eye_level", "zh": "平视", "en": "eye level" },
+            { "id": "low_angle", "zh": "仰视", "en": "low angle" },
+            { "id": "birds_eye", "zh": "俯视", "en": "bird's eye view" },
+            { "id": "dutch_angle", "zh": "荷兰角", "en": "dutch angle" },
+            { "id": "pov", "zh": "第一人称", "en": "POV, first-person view" }
+          ]
+        },
+        {
+          "key": "composition",
+          "name": { "zh": "构图法", "en": "Composition" },
+          "keywords": [
+            { "id": "rule_of_thirds", "zh": "三分法", "en": "rule of thirds" },
+            { "id": "centered", "zh": "居中构图", "en": "centered composition" },
+            { "id": "symmetric", "zh": "对称构图", "en": "symmetric" },
+            { "id": "leading_lines", "zh": "引导线", "en": "leading lines" },
+            { "id": "golden_ratio", "zh": "黄金螺旋", "en": "golden ratio" }
+          ]
+        },
+        {
+          "key": "distance",
+          "name": { "zh": "距离", "en": "Distance" },
+          "keywords": [
+            { "id": "close_up", "zh": "特写", "en": "close-up" },
+            { "id": "extreme_close_up", "zh": "极特写", "en": "extreme close-up" },
+            { "id": "medium_shot", "zh": "中景", "en": "medium shot" },
+            { "id": "full_body", "zh": "全身", "en": "full body shot" },
+            { "id": "wide_shot", "zh": "远景", "en": "wide shot" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "technical",
+      "name": { "zh": "细节参数", "en": "Technical Specs" },
+      "order": 7,
+      "subCategories": [
+        {
+          "key": "quality",
+          "name": { "zh": "画质", "en": "Quality" },
+          "keywords": [
+            { "id": "8k", "zh": "8K", "en": "8K, ultra high resolution" },
+            { "id": "4k", "zh": "4K", "en": "4K resolution" },
+            { "id": "highly_detailed", "zh": "高度细节", "en": "highly detailed, intricate details" },
+            { "id": "sharp_focus", "zh": "锐利对焦", "en": "sharp focus" },
+            { "id": "raw_photo", "zh": "RAW原片", "en": "RAW photo" }
+          ]
+        },
+        {
+          "key": "renderer",
+          "name": { "zh": "渲染器", "en": "Renderer" },
+          "keywords": [
+            { "id": "octane", "zh": "Octane", "en": "octane render" },
+            { "id": "ue5", "zh": "虚幻引擎5", "en": "unreal engine 5" },
+            { "id": "blender", "zh": "Blender", "en": "blender cycles" },
+            { "id": "vray", "zh": "V-Ray", "en": "v-ray render" }
+          ]
+        },
+        {
+          "key": "post_processing",
+          "name": { "zh": "后期", "en": "Post-processing" },
+          "keywords": [
+            { "id": "color_grading", "zh": "调色", "en": "color grading" },
+            { "id": "hdr", "zh": "HDR", "en": "HDR, high dynamic range" },
+            { "id": "film_grain", "zh": "胶片颗粒", "en": "film grain, ISO 400" },
+            { "id": "anti_aliased", "zh": "抗锯齿", "en": "anti-aliased, smooth gradients" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "artist",
+      "name": { "zh": "艺术家参考", "en": "Artist & Reference" },
+      "order": 8,
+      "subCategories": [
+        {
+          "key": "photographer",
+          "name": { "zh": "摄影大师", "en": "Photographer" },
+          "keywords": [
+            { "id": "leibovitz", "zh": "安妮·莱博维茨", "en": "in the style of Annie Leibovitz" },
+            { "id": "lindbergh", "zh": "彼得·林德伯格", "en": "in the style of Peter Lindbergh" },
+            { "id": "mccurry", "zh": "史蒂夫·麦凯瑞", "en": "in the style of Steve McCurry" }
+          ]
+        },
+        {
+          "key": "painter",
+          "name": { "zh": "绘画大师", "en": "Painter" },
+          "keywords": [
+            { "id": "van_gogh", "zh": "梵高", "en": "in the style of Vincent van Gogh" },
+            { "id": "monet", "zh": "莫奈", "en": "in the style of Monet" },
+            { "id": "qi_baishi", "zh": "齐白石", "en": "in the style of Qi Baishi" }
+          ]
+        },
+        {
+          "key": "filmmaker",
+          "name": { "zh": "电影导演", "en": "Filmmaker" },
+          "keywords": [
+            { "id": "wong_kar_wai", "zh": "王家卫", "en": "in the style of Wong Kar-wai" },
+            { "id": "wes_anderson", "zh": "韦斯·安德森", "en": "in the style of Wes Anderson" },
+            { "id": "nolan", "zh": "诺兰", "en": "in the style of Christopher Nolan" }
+          ]
+        },
+        {
+          "key": "anime_artist",
+          "name": { "zh": "动漫大师", "en": "Anime Artist" },
+          "keywords": [
+            { "id": "miyazaki", "zh": "宫崎骏", "en": "in the style of Hayao Miyazaki" },
+            { "id": "shinkai", "zh": "新海诚", "en": "in the style of Makoto Shinkai" }
+          ]
+        },
+        {
+          "key": "platform",
+          "name": { "zh": "平台参考", "en": "Platform" },
+          "keywords": [
+            { "id": "artstation", "zh": "ArtStation 趋势", "en": "trending on artstation" },
+            { "id": "behance", "zh": "Behance 精选", "en": "featured on behance" }
+          ]
+        }
+      ]
+    }
+  ],
+  "negativeCategories": [
+    {
+      "key": "quality",
+      "name": { "zh": "质量类", "en": "Quality" },
+      "order": 1,
+      "subCategories": [
+        {
+          "key": "general_quality",
+          "name": { "zh": "通用质量", "en": "General" },
+          "keywords": [
+            { "id": "low_quality", "zh": "低质量", "en": "low quality, lowres" },
+            { "id": "blurry", "zh": "模糊", "en": "blurry, blur" },
+            { "id": "noisy", "zh": "噪点", "en": "noisy, noise" },
+            { "id": "pixelated", "zh": "像素化", "en": "pixelated, jpeg artifacts" },
+            { "id": "distorted", "zh": "失真", "en": "distorted, distortion" },
+            { "id": "amateur", "zh": "业余水平", "en": "amateur, low effort" },
+            { "id": "unfinished", "zh": "未完成", "en": "sketch, unfinished" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "anatomy",
+      "name": { "zh": "解剖结构", "en": "Anatomy" },
+      "order": 2,
+      "subCategories": [
+        {
+          "key": "face",
+          "name": { "zh": "面部", "en": "Face" },
+          "keywords": [
+            { "id": "deformed_face", "zh": "面部畸形", "en": "deformed face, ugly face" },
+            { "id": "bad_eyes", "zh": "眼睛畸形", "en": "deformed eyes, bad eyes, cross-eyed" },
+            { "id": "bad_nose", "zh": "鼻子畸形", "en": "bad nose, deformed nose" },
+            { "id": "bad_mouth", "zh": "嘴部畸形", "en": "bad mouth, deformed mouth" },
+            { "id": "asymmetric_face", "zh": "脸不对称", "en": "asymmetric face" }
+          ]
+        },
+        {
+          "key": "hands",
+          "name": { "zh": "手部", "en": "Hands" },
+          "keywords": [
+            { "id": "extra_fingers", "zh": "多余手指", "en": "extra fingers, six fingers" },
+            { "id": "mutated_hands", "zh": "变异的手", "en": "mutated hands, bad hands" },
+            { "id": "fused_fingers", "zh": "手指粘连", "en": "fused fingers, connected fingers" },
+            { "id": "missing_fingers", "zh": "缺手指", "en": "too few fingers, missing fingers" },
+            { "id": "extra_arms", "zh": "多余手臂", "en": "extra arms, mutated arms" }
+          ]
+        },
+        {
+          "key": "body",
+          "name": { "zh": "身体", "en": "Body" },
+          "keywords": [
+            { "id": "bad_anatomy", "zh": "解剖错误", "en": "bad anatomy, bad proportions" },
+            { "id": "extra_legs", "zh": "多余腿", "en": "extra legs, mutated legs" },
+            { "id": "deformed_body", "zh": "身体畸形", "en": "deformed body, bad body" },
+            { "id": "extra_feet", "zh": "多余脚", "en": "extra feet" },
+            { "id": "missing_parts", "zh": "缺身体部位", "en": "missing body parts" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "watermark",
+      "name": { "zh": "文本水印", "en": "Text & Watermark" },
+      "order": 3,
+      "subCategories": [
+        {
+          "key": "text_watermark",
+          "name": { "zh": "水印文字", "en": "Watermark & Text" },
+          "keywords": [
+            { "id": "watermark", "zh": "水印", "en": "watermark, watermarks" },
+            { "id": "signature", "zh": "签名", "en": "signature" },
+            { "id": "text", "zh": "文字", "en": "text, letters" },
+            { "id": "logo", "zh": "Logo", "en": "logo, brand name" },
+            { "id": "copyright", "zh": "版权符号", "en": "copyright, trademark" },
+            { "id": "url", "zh": "网址", "en": "url, website" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "image_elements",
+      "name": { "zh": "图像元素", "en": "Image Elements" },
+      "order": 4,
+      "subCategories": [
+        {
+          "key": "bad_elements",
+          "name": { "zh": "不良元素", "en": "Bad Elements" },
+          "keywords": [
+            { "id": "border", "zh": "边框", "en": "border, frame, edges" },
+            { "id": "black_border", "zh": "黑边", "en": "black border, black edges" },
+            { "id": "cropped", "zh": "切边", "en": "cropped, cut off" },
+            { "id": "split_screen", "zh": "分屏", "en": "split screen, multiple panels" },
+            { "id": "bad_reflections", "zh": "倒影错乱", "en": "bad reflections" },
+            { "id": "aliasing", "zh": "锯齿", "en": "aliasing, jagged" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "composition_neg",
+      "name": { "zh": "构图视角", "en": "Composition" },
+      "order": 5,
+      "subCategories": [
+        {
+          "key": "bad_composition",
+          "name": { "zh": "构图问题", "en": "Composition Issues" },
+          "keywords": [
+            { "id": "bad_comp", "zh": "构图混乱", "en": "bad composition" },
+            { "id": "cut_off_head", "zh": "头部截断", "en": "cut off head" },
+            { "id": "cut_off_body", "zh": "身体截断", "en": "cut off body, cropped body" },
+            { "id": "merged_faces", "zh": "多人脸融合", "en": "merged faces, two heads" },
+            { "id": "bad_perspective", "zh": "怪异透视", "en": "bad perspective" },
+            { "id": "extra_subjects", "zh": "多余主体", "en": "extra subjects, cloned person" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lighting_color_neg",
+      "name": { "zh": "光影色彩", "en": "Lighting & Color" },
+      "order": 6,
+      "subCategories": [
+        {
+          "key": "bad_lighting",
+          "name": { "zh": "光影问题", "en": "Lighting Issues" },
+          "keywords": [
+            { "id": "overexposed", "zh": "过曝", "en": "overexposed, blown out" },
+            { "id": "underexposed", "zh": "欠曝", "en": "underexposed, too dark" },
+            { "id": "oversaturated", "zh": "过度饱和", "en": "oversaturated, neon colors" },
+            { "id": "washed_out", "zh": "灰蒙蒙", "en": "dull, washed out" },
+            { "id": "uneven_lighting", "zh": "曝光不均", "en": "uneven lighting" },
+            { "id": "color_distortion", "zh": "色彩失真", "en": "color distortion, color shift" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "style_exclusion",
+      "name": { "zh": "风格排除", "en": "Style Exclusion" },
+      "order": 7,
+      "subCategories": [
+        {
+          "key": "exclude_style",
+          "name": { "zh": "排除风格", "en": "Exclude" },
+          "keywords": [
+            { "id": "no_realistic", "zh": "不要写实", "en": "photorealistic, photo, real person" },
+            { "id": "no_anime", "zh": "不要动漫", "en": "anime, cartoon, manga" },
+            { "id": "no_oil", "zh": "不要油画", "en": "oil painting, watercolor, sketch" },
+            { "id": "no_abstract", "zh": "不要抽象", "en": "abstract, minimalist, geometric" },
+            { "id": "no_3d", "zh": "不要3D", "en": "3D render, CGI" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "scene_exclusion",
+      "name": { "zh": "场景排除", "en": "Scene Exclusion" },
+      "order": 8,
+      "subCategories": [
+        {
+          "key": "exclude_scene",
+          "name": { "zh": "排除元素", "en": "Exclude" },
+          "keywords": [
+            { "id": "no_people", "zh": "不要人", "en": "extra people, no people" },
+            { "id": "clutter", "zh": "杂乱背景", "en": "messy background, clutter" },
+            { "id": "no_animals", "zh": "不要动物", "en": "no animals" },
+            { "id": "repetitive", "zh": "重复图案", "en": "repetitive, tiled" },
+            { "id": "no_sky", "zh": "不要天空", "en": "no sky" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ethics",
+      "name": { "zh": "道德安全", "en": "Ethics & Safety" },
+      "order": 9,
+      "subCategories": [
+        {
+          "key": "safety",
+          "name": { "zh": "安全过滤", "en": "Safety" },
+          "keywords": [
+            { "id": "nsfw", "zh": "裸露", "en": "nude, naked, NSFW" },
+            { "id": "violent", "zh": "暴力", "en": "violent, gore, blood" },
+            { "id": "weapon", "zh": "武器特写", "en": "weapon close-up" },
+            { "id": "hate", "zh": "仇恨符号", "en": "hate symbols, swastika" },
+            { "id": "drugs", "zh": "毒品", "en": "drugs, drug use" }
+          ]
+        }
+      ]
+    }
+  ]
+}
