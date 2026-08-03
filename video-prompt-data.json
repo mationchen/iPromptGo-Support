@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "categories": [
+    {
+      "key": "subject",
+      "name": { "zh": "主体", "en": "Subject" },
+      "order": 1,
+      "subCategories": [
+        {
+          "key": "person",
+          "name": { "zh": "人物", "en": "Person" },
+          "keywords": [
+            { "id": "person_walking", "zh": "行走的人", "en": "a person walking" },
+            { "id": "dancer", "zh": "舞者", "en": "a dancer performing" },
+            { "id": "crowd", "zh": "人群", "en": "a crowd of people" },
+            { "id": "portrait_talking", "zh": "人物特写说话", "en": "close-up portrait talking" },
+            { "id": "athlete", "zh": "运动员", "en": "an athlete in motion" },
+            { "id": "musician", "zh": "音乐家演奏", "en": "a musician performing" }
+          ]
+        },
+        {
+          "key": "animal",
+          "name": { "zh": "动物", "en": "Animal" },
+          "keywords": [
+            { "id": "bird_flying", "zh": "飞鸟", "en": "a bird flying" },
+            { "id": "cat_playing", "zh": "猫玩耍", "en": "a cat playing" },
+            { "id": "dog_running", "zh": "狗奔跑", "en": "a dog running" },
+            { "id": "fish_swimming", "zh": "鱼游动", "en": "fish swimming" },
+            { "id": "butterfly", "zh": "蝴蝶飞舞", "en": "a butterfly fluttering" }
+          ]
+        },
+        {
+          "key": "nature",
+          "name": { "zh": "自然", "en": "Nature" },
+          "keywords": [
+            { "id": "waterfall", "zh": "瀑布", "en": "a waterfall flowing" },
+            { "id": "ocean_waves", "zh": "海浪", "en": "ocean waves crashing" },
+            { "id": "clouds_moving", "zh": "云层流动", "en": "clouds drifting" },
+            { "id": "rain", "zh": "下雨", "en": "rain falling" },
+            { "id": "snowfall", "zh": "下雪", "en": "snow falling gently" },
+            { "id": "sunrise", "zh": "日出", "en": "sunrise over landscape" },
+            { "id": "fire", "zh": "火焰", "en": "fire burning" }
+          ]
+        },
+        {
+          "key": "city",
+          "name": { "zh": "城市场景", "en": "Urban" },
+          "keywords": [
+            { "id": "traffic", "zh": "车流", "en": "traffic flowing" },
+            { "id": "street_walk", "zh": "街景漫步", "en": "walking through city streets" },
+            { "id": "night_city", "zh": "夜景", "en": "city at night with lights" },
+            { "id": "subway", "zh": "地铁", "en": "subway train arriving" },
+            { "id": "market", "zh": "集市", "en": "a bustling market" }
+          ]
+        },
+        {
+          "key": "object",
+          "name": { "zh": "物体", "en": "Object" },
+          "keywords": [
+            { "id": "car_driving", "zh": "行驶的车", "en": "a car driving" },
+            { "id": "spinning_object", "zh": "旋转物体", "en": "an object spinning" },
+            { "id": "liquid_pour", "zh": "倒液体", "en": "liquid being poured" },
+            { "id": "smoke", "zh": "烟雾", "en": "smoke rising" },
+            { "id": "clock", "zh": "时钟", "en": "a clock ticking" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "style",
+      "name": { "zh": "风格", "en": "Style" },
+      "order": 2,
+      "subCategories": [
+        {
+          "key": "video_style",
+          "name": { "zh": "视频风格", "en": "Video Style" },
+          "keywords": [
+            { "id": "cinematic", "zh": "电影感", "en": "cinematic, film look" },
+            { "id": "documentary", "zh": "纪录片", "en": "documentary style" },
+            { "id": "vlog", "zh": "Vlog", "en": "vlog style, handheld" },
+            { "id": "commercial", "zh": "广告片", "en": "commercial, product video" },
+            { "id": "music_video", "zh": "MV风格", "en": "music video style" },
+            { "id": "anime_video", "zh": "动漫", "en": "anime style, animated" },
+            { "id": "vintage_film", "zh": "复古胶片", "en": "vintage film, retro look" },
+            { "id": "3d_render_video", "zh": "3D渲染", "en": "3D render, CGI" }
+          ]
+        },
+        {
+          "key": "aspect_ratio",
+          "name": { "zh": "画幅", "en": "Aspect Ratio" },
+          "keywords": [
+            { "id": "wide_219", "zh": "宽银幕 21:9", "en": "21:9 cinematic widescreen" },
+            { "id": "standard_169", "zh": "标准 16:9", "en": "16:9 standard" },
+            { "id": "vertical_916", "zh": "竖屏 9:16", "en": "9:16 vertical, mobile" },
+            { "id": "square_11", "zh": "方形 1:1", "en": "1:1 square format" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "camera_movement",
+      "name": { "zh": "镜头运动", "en": "Camera Movement" },
+      "order": 3,
+      "subCategories": [
+        {
+          "key": "movement_type",
+          "name": { "zh": "运动类型", "en": "Movement" },
+          "keywords": [
+            { "id": "pan_left", "zh": "左摇", "en": "panning left" },
+            { "id": "pan_right", "zh": "右摇", "en": "panning right" },
+            { "id": "tilt_up", "zh": "上摇", "en": "tilting up" },
+            { "id": "tilt_down", "zh": "下摇", "en": "tilting down" },
+            { "id": "dolly_in", "zh": "推近", "en": "dolly in, push in" },
+            { "id": "dolly_out", "zh": "拉远", "en": "dolly out, pull back" },
+            { "id": "tracking", "zh": "跟拍", "en": "tracking shot" },
+            { "id": "handheld", "zh": "手持晃动", "en": "handheld, shaky cam" },
+            { "id": "steadicam", "zh": "稳定器", "en": "steadicam, gimbal smooth" },
+            { "id": "drone_shot", "zh": "航拍", "en": "drone shot, aerial" },
+            { "id": "crane", "zh": "摇臂", "en": "crane shot" },
+            { "id": "static", "zh": "固定镜头", "en": "static shot, tripod" },
+            { "id": "zoom_in", "zh": "变焦推", "en": "zoom in, crash zoom" },
+            { "id": "zoom_out", "zh": "变焦拉", "en": "zoom out" },
+            { "id": "whip_pan", "zh": "甩镜头", "en": "whip pan, fast pan" }
+          ]
+        },
+        {
+          "key": "angle",
+          "name": { "zh": "视角", "en": "Angle" },
+          "keywords": [
+            { "id": "eye_level_v", "zh": "平视", "en": "eye level" },
+            { "id": "low_angle_v", "zh": "仰拍", "en": "low angle looking up" },
+            { "id": "high_angle_v", "zh": "俯拍", "en": "high angle looking down" },
+            { "id": "birds_eye_v", "zh": "鸟瞰", "en": "bird's eye view" },
+            { "id": "pov_v", "zh": "主观视角", "en": "POV, first-person" },
+            { "id": "dutch_v", "zh": "斜角", "en": "dutch angle, tilted" },
+            { "id": "over_shoulder_v", "zh": "过肩", "en": "over the shoulder" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "transition",
+      "name": { "zh": "转场", "en": "Transition" },
+      "order": 4,
+      "subCategories": [
+        {
+          "key": "transition_type",
+          "name": { "zh": "转场类型", "en": "Type" },
+          "keywords": [
+            { "id": "hard_cut", "zh": "硬切", "en": "hard cut" },
+            { "id": "fade_in", "zh": "淡入", "en": "fade in from black" },
+            { "id": "fade_out", "zh": "淡出", "en": "fade out to black" },
+            { "id": "dissolve", "zh": "叠化", "en": "cross dissolve" },
+            { "id": "wipe", "zh": "擦除", "en": "wipe transition" },
+            { "id": "slide", "zh": "滑动", "en": "slide transition" },
+            { "id": "zoom_transition", "zh": "缩放转场", "en": "zoom transition" },
+            { "id": "spin", "zh": "旋转转场", "en": "spin transition" },
+            { "id": "match_cut", "zh": "匹配剪辑", "en": "match cut" },
+            { "id": "jump_cut", "zh": "跳切", "en": "jump cut" },
+            { "id": "glitch", "zh": "故障转场", "en": "glitch transition" },
+            { "id": "light_leak", "zh": "漏光转场", "en": "light leak transition" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pace",
+      "name": { "zh": "节奏", "en": "Pace & Speed" },
+      "order": 5,
+      "subCategories": [
+        {
+          "key": "speed",
+          "name": { "zh": "速度", "en": "Speed" },
+          "keywords": [
+            { "id": "slow_motion", "zh": "慢动作", "en": "slow motion, 120fps" },
+            { "id": "timelapse", "zh": "延时摄影", "en": "time-lapse" },
+            { "id": "fast_forward", "zh": "快进", "en": "fast forward, speed ramp" },
+            { "id": "real_time", "zh": "实时", "en": "real-time, normal speed" },
+            { "id": "freeze_frame", "zh": "定格", "en": "freeze frame" },
+            { "id": "reverse", "zh": "倒放", "en": "reverse playback" }
+          ]
+        },
+        {
+          "key": "rhythm",
+          "name": { "zh": "节奏感", "en": "Rhythm" },
+          "keywords": [
+            { "id": "fast_cuts", "zh": "快剪", "en": "fast cuts, rapid editing" },
+            { "id": "slow_build", "zh": "缓慢递进", "en": "slow build-up" },
+            { "id": "sync_music", "zh": "卡点/同步音乐", "en": "synced to music beat" },
+            { "id": "smooth_flow", "zh": "流畅叙事", "en": "smooth flowing narrative" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "lighting",
+      "name": { "zh": "灯光", "en": "Lighting" },
+      "order": 6,
+      "subCategories": [
+        {
+          "key": "light_types",
+          "name": { "zh": "灯光类型", "en": "Light Type" },
+          "keywords": [
+            { "id": "natural_v", "zh": "自然光", "en": "natural lighting" },
+            { "id": "golden_hour_v", "zh": "黄金时刻", "en": "golden hour lighting" },
+            { "id": "neon_v", "zh": "霓虹灯", "en": "neon lighting" },
+            { "id": "studio_v", "zh": "影棚灯光", "en": "studio lighting, three-point" },
+            { "id": "backlit_v", "zh": "逆光/剪影", "en": "backlit, silhouette" },
+            { "id": "moody_v", "zh": "氛围光", "en": "moody, low-key lighting" },
+            { "id": "practical_v", "zh": "场景光源", "en": "practical lights, diegetic" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "color",
+      "name": { "zh": "调色", "en": "Color Grading" },
+      "order": 7,
+      "subCategories": [
+        {
+          "key": "grade",
+          "name": { "zh": "调色风格", "en": "Grade" },
+          "keywords": [
+            { "id": "teal_orange", "zh": "青橙调", "en": "teal and orange grade" },
+            { "id": "warm_grade", "zh": "暖色调", "en": "warm color grade" },
+            { "id": "cool_grade", "zh": "冷色调", "en": "cool blue grade" },
+            { "id": "bw_v", "zh": "黑白", "en": "black and white" },
+            { "id": "vintage_grade", "zh": "复古胶片色", "en": "vintage film grade" },
+            { "id": "desaturated_v", "zh": "低饱和", "en": "desaturated, muted" },
+            { "id": "vivid_v", "zh": "高饱和", "en": "vivid, highly saturated" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "technical",
+      "name": { "zh": "技术参数", "en": "Technical" },
+      "order": 8,
+      "subCategories": [
+        {
+          "key": "quality",
+          "name": { "zh": "画质", "en": "Quality" },
+          "keywords": [
+            { "id": "4k_v", "zh": "4K", "en": "4K resolution" },
+            { "id": "8k_v", "zh": "8K", "en": "8K resolution" },
+            { "id": "60fps_v", "zh": "60fps", "en": "60fps smooth" },
+            { "id": "24fps_v", "zh": "24fps 电影帧率", "en": "24fps cinematic" },
+            { "id": "hdr_v", "zh": "HDR", "en": "HDR, high dynamic range" },
+            { "id": "log_v", "zh": "Log 色彩空间", "en": "Log color space, flat" }
+          ]
+        },
+        {
+          "key": "tech",
+          "name": { "zh": "拍摄技术", "en": "Technique" },
+          "keywords": [
+            { "id": "stabilized", "zh": "防抖", "en": "stabilized, smooth" },
+            { "id": "bokeh_v", "zh": "背景虚化", "en": "shallow depth of field, bokeh" },
+            { "id": "macro_v", "zh": "微距", "en": "macro close-up" },
+            { "id": "anamorphic_v", "zh": "变形宽银幕", "en": "anamorphic lens" },
+            { "id": "motion_blur", "zh": "运动模糊", "en": "motion blur" }
+          ]
+        }
+      ]
+    }
+  ],
+  "negativeCategories": [
+    {
+      "key": "quality",
+      "name": { "zh": "质量", "en": "Quality" },
+      "order": 1,
+      "subCategories": [
+        {
+          "key": "bad_quality",
+          "name": { "zh": "排除", "en": "Exclude" },
+          "keywords": [
+            { "id": "low_qual_v", "zh": "低质量", "en": "low quality, low resolution" },
+            { "id": "blurry_v", "zh": "模糊", "en": "blurry, out of focus" },
+            { "id": "shaky_v", "zh": "过于抖动", "en": "excessively shaky, unstable" },
+            { "id": "noisy_v", "zh": "噪点", "en": "noisy, grainy" },
+            { "id": "jittery_v", "zh": "卡顿", "en": "jittery, stuttering, low frame rate" },
+            { "id": "artifact_v", "zh": "压缩伪影", "en": "compression artifacts" },
+            { "id": "watermark_v", "zh": "水印", "en": "watermark, logo, text" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "style_exclusion",
+      "name": { "zh": "风格排除", "en": "Style Exclusion" },
+      "order": 2,
+      "subCategories": [
+        {
+          "key": "exclude",
+          "name": { "zh": "排除", "en": "Exclude" },
+          "keywords": [
+            { "id": "no_static_v", "zh": "不要静态", "en": "static image, still photo" },
+            { "id": "no_anime_v", "zh": "不要动漫", "en": "anime, cartoon" },
+            { "id": "no_horror_v", "zh": "不要恐怖", "en": "horror, scary, gore" },
+            { "id": "no_text_v", "zh": "不要字幕", "en": "subtitles, text overlay" },
+            { "id": "no_black_bars", "zh": "不要黑边", "en": "black bars, letterboxing" }
+          ]
+        }
+      ]
+    }
+  ]
+}
