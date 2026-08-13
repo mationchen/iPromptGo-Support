@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>隐私政策 — iPromptGo（意匠引）</title>
+<title>隐私政策 / Privacy Policy — iPromptGo（意匠引）</title>
 <style>
   :root {
     --bg: #f7f4ee;
@@ -31,6 +31,28 @@
     margin: 0 auto;
     padding: 32px 20px 80px;
   }
+  .lang-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .lang-switch button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 20px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .lang-switch button.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
   .paper {
     background: var(--paper);
     border: 1px solid var(--line);
@@ -38,6 +60,7 @@
     padding: 40px 36px 48px;
     box-shadow: 0 2px 16px rgba(43, 38, 32, 0.06);
   }
+  .paper[hidden] { display: none; }
   h1 {
     font-size: 28px;
     margin: 0 0 6px;
@@ -115,7 +138,14 @@
 </head>
 <body>
 <div class="page">
-  <div class="paper">
+
+  <div class="lang-switch">
+    <button type="button" class="active" data-lang="zh">中文</button>
+    <button type="button" data-lang="en">English</button>
+  </div>
+
+  <!-- 中文版 -->
+  <div class="paper" id="paper-zh" lang="zh-CN">
     <h1>隐私政策</h1>
     <p class="subtitle">iPromptGo（意匠引）—— AI 图片与视频提示词助手</p>
     <p class="meta">最后更新日期：2026 年 8 月 13 日</p>
@@ -246,6 +276,160 @@
 
     <div class="footer">© 2026 iPromptGo（意匠引）。保留所有权利。</div>
   </div>
+
+  <!-- English version -->
+  <div class="paper" id="paper-en" lang="en" hidden>
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">iPromptGo — AI Assistant for Image &amp; Video Prompts</p>
+    <p class="meta">Last updated: August 13, 2026</p>
+
+    <p>Welcome to iPromptGo (hereinafter referred to as "the App" or "we"). This Privacy Policy is designed to clearly and transparently explain how the App handles your data while you use it, including what information we collect, how it is used, whether it is shared, and your rights.</p>
+    <p>Please read this policy carefully before using the App. By using the App, you acknowledge that you have read and understood this policy.</p>
+
+    <div class="box">
+      <strong>Important:</strong> The App's core features (prompt generation, collection, statistics, keyword management, etc.) are all performed locally on your device. We <strong>do not operate an account system, do not offer any server upload functionality, and do not send your creative content to any server we own</strong>. All of your creative content is stored solely on your device.
+    </div>
+
+    <h2>1. Information We Collect</h2>
+
+    <h3>1.1 Information You Provide (Stored Locally Only)</h3>
+    <p>While using the App's features, you may enter the following information within the App. This information is <strong>stored only in the local database (SQLite) on your device and is never uploaded to any server</strong>:</p>
+    <ul>
+      <li><strong>Profile information:</strong> You may optionally enter your nickname, email, phone number, etc. on the "Profile" page, and select one image from your photo library as an avatar.</li>
+      <li><strong>Saved prompts:</strong> The prompts (and their Chinese/English versions) that you save in the "Collection".</li>
+      <li><strong>Custom keywords:</strong> The custom Chinese/English keywords you add.</li>
+      <li><strong>Feedback:</strong> The content of problems or suggestions you submit and any contact details you leave, stored only in the local "Feedback History".</li>
+      <li><strong>App settings:</strong> Your preferences such as language (Chinese/English), theme (System/Light/Dark), and the category description toggle.</li>
+    </ul>
+
+    <h3>1.2 Information Collected Automatically</h3>
+    <p>When you view ads through the advertising features, the third-party advertising service we integrate (see "Third-Party Services" below) may automatically collect the following information:</p>
+    <ul>
+      <li>The advertising identifier of your device (such as the Android Advertising ID);</li>
+      <li>Device information (device model, operating system version, network type, etc.);</li>
+      <li>Your Internet Protocol (IP) address;</li>
+      <li>Approximate location inferred from signals such as your IP address;</li>
+      <li>Information about your interactions with ads (such as impressions and clicks).</li>
+    </ul>
+
+    <h3>1.3 Information We Do Not Collect</h3>
+    <p>The App <strong>does not</strong> collect the following types of personal information:</p>
+    <ul>
+      <li>Your real name, email, or phone number (even if you enter them locally, they are only for your personal viewing on the device and are not uploaded);</li>
+      <li>Location information (precise geolocation);</li>
+      <li>Contacts, SMS, or call records;</li>
+      <li>Content captured by your camera (we only read a single image that you actively select through the system photo picker as an avatar, and do not access your entire photo library);</li>
+      <li>Any information relating to children.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li><strong>To provide and maintain the Service:</strong> We use your locally stored prompts, keywords, and settings to provide prompt generation, collection, statistics, and management features.</li>
+      <li><strong>To display ads:</strong> Advertising providers use the information they collect to serve and measure ads (see "Third-Party Services" below).</li>
+      <li><strong>To improve the Service:</strong> We do not use your personal data for analytics or profiling.</li>
+    </ul>
+
+    <h2>3. Third-Party Services</h2>
+
+    <h3>3.1 Advertising Service (Google AdMob)</h3>
+    <p>The App uses Google AdMob, a mobile advertising service operated by Google LLC and its affiliates (collectively, "Google"), to display banner ads, app open ads, and rewarded ads. Ads help keep the App free of charge or provide additional free copy count.</p>
+    <p>When ads are displayed, Google may, in accordance with its own privacy policy, collect and use your advertising identifier, device information, IP address, approximate location, and ad interaction information to serve, personalize (if you consent), and measure ads. You can review Google's privacy policy and data usage statements at the following pages:</p>
+    <ul>
+      <li>Google Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></li>
+      <li>How Google uses data when you use its partners' sites or apps: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">https://policies.google.com/technologies/partner-sites</a></li>
+    </ul>
+    <p><strong>Ad personalization and consent:</strong></p>
+    <ul>
+      <li><strong>EU/EEA, UK and other applicable regions:</strong> Where applicable data protection law (such as the GDPR) requires consent, we obtain your consent before serving personalized ads, in accordance with Google's EU User Consent Policy. If you do not consent, we will serve non-personalized ads.</li>
+      <li><strong>Opt out at any time:</strong> You may at any time limit ad tracking or opt out of ad personalization in your system settings (Android: Settings &gt; Google &gt; Ads &gt; Delete advertising ID / Opt out of Ads Personalization).</li>
+    </ul>
+
+    <h3>3.2 Remove Ads Purchase (Google Play Billing)</h3>
+    <p>The App offers a one-time in-app purchase to permanently remove all ads. Purchases are processed by the <strong>Google Play Billing service</strong>. We do not collect or store your card number, payment password, or other payment information. All purchase-related processing is completed by Google in accordance with its terms of service and privacy policy.</p>
+
+    <h3>3.3 Third-Party Data Processing</h3>
+    <p>Apart from the advertising and billing services described above, the App <strong>does not share your personal data with any other third party</strong> and does not sell your data to any third party.</p>
+
+    <h2>4. Permissions</h2>
+    <table>
+      <tr><th>Permission</th><th>Purpose</th><th>Necessity</th></tr>
+      <tr>
+        <td>Photo library (image picker)</td>
+        <td>Only used when setting an avatar, to read one image you actively select via the system picker; the image is stored only in the local database.</td>
+        <td>Used only when you set an avatar; authorization can be revoked at any time.</td>
+      </tr>
+      <tr>
+        <td>Internet access</td>
+        <td>Used for necessary network features such as loading and displaying ads and purchase restoration verification (in-app purchase).</td>
+        <td>Required for core functionality.</td>
+      </tr>
+    </table>
+
+    <h2>5. Data Storage and Security</h2>
+    <ul>
+      <li><strong>Storage location:</strong> All of your creative data (prompts, keywords, settings, feedback, avatar) is stored in a local SQLite database on your device and is not transferred to any server.</li>
+      <li><strong>Security measures:</strong> We only use the standard secure connections of the Google advertising and billing SDKs and do not operate any data server ourselves.</li>
+      <li><strong>Transmission security:</strong> All ad- and purchase-related network requests are made over encrypted channels (TLS).</li>
+    </ul>
+
+    <h2>6. Data Retention and Deletion</h2>
+    <h3>6.1 Retention Period</h3>
+    <p>Your local data remains on your device until you actively delete it or uninstall the App.</p>
+    <h3>6.2 How to Delete Your Data</h3>
+    <ul>
+      <li><strong>Delete within the App:</strong> You can delete saved prompts, custom keywords, and feedback records at any time.</li>
+      <li><strong>Uninstall the App:</strong> Uninstalling the App deletes all local data stored by the App on your device.</li>
+      <li><strong>Clear app data:</strong> You can also clear the App's data in your system settings (Android: Settings &gt; Apps &gt; iPromptGo &gt; Storage &amp; cache &gt; Clear storage).</li>
+    </ul>
+    <h3>6.3 Deletion of Ad Data</h3>
+    <p>Data collected by the advertising provider (Google) is retained and deleted in accordance with its own privacy policy. You can reset your advertising identifier via "Delete advertising ID" in your Android system settings, or manage related data in Google's Ads Settings.</p>
+
+    <h2>7. Your Rights</h2>
+    <p>Depending on the applicable data protection law, you may have the following rights:</p>
+    <ul>
+      <li><strong>Right of access:</strong> View your local data through pages such as "Collection" and "Prompt Management" in the App.</li>
+      <li><strong>Right to rectification:</strong> Modify your profile and custom keywords within the App.</li>
+      <li><strong>Right to erasure:</strong> Delete data within the App or uninstall the App at any time (see "Data Retention and Deletion" above).</li>
+      <li><strong>Right to withdraw consent:</strong> You may at any time disable the photo library permission or opt out of ad personalization in your system settings.</li>
+    </ul>
+    <p>Because the App does not hold a server-side copy of your data, all of the rights above can be exercised directly on your device. If you have any other questions, please contact us using the details below.</p>
+
+    <h2>8. Children's Privacy</h2>
+    <p>The App is not directed at children under the age of 13, and we do not knowingly collect any personal information from children. Because the App has no account system and data is stored only locally, we cannot ordinarily come into contact with children's personal data. If you believe that we have inadvertently processed such data, please contact us immediately using the details below, and we will verify and address the matter as soon as possible.</p>
+
+    <h2>9. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we make significant changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify you through in-app messages. We recommend that you review this page periodically.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>If you have any questions, comments, or requests regarding this Privacy Policy or the App's data processing, please contact us at:</p>
+    <ul>
+      <li>Email: <a href="mailto:alexandiachen@gmail.com">alexandiachen@gmail.com</a></li>
+    </ul>
+    <p>We will respond to your request as soon as possible (usually within 15 business days).</p>
+
+    <div class="footer">© 2026 iPromptGo. All rights reserved.</div>
+  </div>
+
 </div>
+
+<script>
+  (function () {
+    var zh = document.getElementById('paper-zh');
+    var en = document.getElementById('paper-en');
+    var buttons = document.querySelectorAll('.lang-switch button');
+    function setLang(lang) {
+      var showZh = lang === 'zh';
+      zh.hidden = !showZh;
+      en.hidden = showZh;
+      buttons.forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = showZh ? 'zh-CN' : 'en';
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+  })();
+</script>
 </body>
 </html>
