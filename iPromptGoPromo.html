@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>意匠引 iPromptGo · AI 提示词智能助手</title>
+<title>意匠引 iPromptGo · AI 提示词智能助手 / AI Prompt Assistant</title>
 <style>
   :root{
     --bg:#e9e1cf;          /* 宣纸底（暖驼色，柔和不刺眼） */
@@ -40,6 +40,14 @@
 
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
+  /* ========== 语言切换 ========== */
+  .lang-switch{position:fixed;top:16px;right:24px;z-index:100;display:flex;gap:8px}
+  .lang-switch button{font-family:inherit;font-size:13px;font-weight:600;letter-spacing:1px;padding:6px 18px;border:1px solid var(--gold);border-radius:999px;background:rgba(246,240,226,.9);color:var(--ink-2);cursor:pointer;transition:.2s;backdrop-filter:blur(6px)}
+  .lang-switch button:hover{border-color:var(--red);color:var(--red)}
+  .lang-switch button.active{background:var(--grad);border-color:var(--red-deep);color:#fff}
+  #lang-en{display:none}
+  @media(max-width:900px){.lang-switch{top:10px;right:12px;padding:4px}.lang-switch button{padding:5px 14px;font-size:12px}}
+
   /* ========== 导航 ========== */
   nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(233,225,207,.88);border-bottom:1px solid var(--card-border)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
@@ -66,7 +74,7 @@
   .store-tx em{font-style:normal;font-size:11px;color:var(--ink-3);letter-spacing:1px}
   .store-tx b{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:1px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
   .store-qr{width:150px;height:150px;border-radius:8px;border:1px solid var(--card-border);background:#fff;object-fit:contain;margin-top:2px}
-  .store-qr[src^="二维码"],.qr-ph{background:repeating-conic-gradient(#f3ead6 0% 25%,#fff 0% 50%) 50%/14px 14px}
+  .store-qr[src*="二维码"],.qr-ph{background:repeating-conic-gradient(#f3ead6 0% 25%,#fff 0% 50%) 50%/14px 14px}
   .qr-ph{width:150px;height:150px;border-radius:8px;border:1px dashed var(--gold);display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:14px;letter-spacing:2px;margin-top:2px}
 
   /* ========== Hero（左介绍 + 右轮播，介绍层浮于轮播之上） ========== */
@@ -93,7 +101,7 @@
 
   /* ========== 弧形截图轮播（置于 Hero 右栏，层序在介绍层之下） ========== */
   .hero-carousel{position:relative;z-index:1}
-  .carousel-stage{position:relative;height:560px;perspective:1200px}
+  .carousel-stage{position:relative;height:660px;perspective:1200px}
   .carousel{position:absolute;inset:0;transform-style:preserve-3d}
   .cslide{position:absolute;left:50%;top:50%;width:250px;transform:translate(-50%,-50%);transition:transform .7s cubic-bezier(.4,.2,.2,1),opacity .6s ease;cursor:pointer}
   .cslide .shot{width:250px;height:540px;border-radius:26px;background:var(--card);border:1px solid var(--card-border);box-shadow:var(--shadow);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
@@ -101,9 +109,12 @@
   .cslide .shot .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink-3)}
   .cslide .shot .ph .ph-ic{font-size:46px;margin-bottom:14px;opacity:.5}
   .cslide .shot .ph .ph-txt{font-size:13px;letter-spacing:2px}
-  .cslide .cap{position:absolute;left:50%;transform:translateX(-50%);bottom:-34px;width:100%;text-align:center;pointer-events:none}
+  .cslide .cap{position:absolute;left:50%;transform:translateX(-50%);bottom:-60px;width:100%;text-align:center;pointer-events:none}
   .cslide .cap h4{font-size:15px;font-weight:700;letter-spacing:2px;color:var(--red-deep)}
   .cslide .cap p{font-size:12px;color:var(--ink-3);margin-top:2px;letter-spacing:1px}
+  /* 标题文字仅中央卡片显示，其余卡片隐藏，避免弧形排布下文字互相重叠 */
+  .cslide .cap{opacity:0;visibility:hidden;transition:opacity .6s ease}
+  .cslide.s0 .cap{opacity:1;visibility:visible}
   /* 弧形排布：居中为 0，向左（朝向介绍层）的卡片旋转收窄并后移，透过介绍层淡淡可见 */
   .cslide.s0{transform:translate(-50%,-50%) scale(1);opacity:1;z-index:3}
   .cslide.s1{transform:translate(-138%,-50%) scale(.8) rotateY(34deg);opacity:.66;z-index:2}
@@ -112,6 +123,8 @@
   .cslide.s-2{transform:translate(126%,-50%) scale(.58) rotateY(-44deg);opacity:.3;z-index:1}
   .cslide.s3{transform:translate(-314%,-50%) scale(.44) rotateY(50deg);opacity:.14;z-index:0}
   .cslide.s-3{transform:translate(214%,-50%) scale(.44) rotateY(-50deg);opacity:.14;z-index:0}
+  .cslide.s4{transform:translate(-402%,-50%) scale(.34) rotateY(56deg);opacity:.06;z-index:0}
+  .cslide.s-4{transform:translate(302%,-50%) scale(.34) rotateY(-56deg);opacity:.06;z-index:0}
   .cslide.hidden{opacity:0;pointer-events:none;z-index:0}
   .carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--card);border:1px solid var(--gold);color:var(--red);font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:.25s;box-shadow:var(--shadow)}
   .carousel-nav:hover{background:var(--red);color:#fff;border-color:var(--red)}
@@ -187,6 +200,19 @@
   .ph-card.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;align-items:center}
   .ph-card.cal .dot{height:14px;border-radius:4px;background:rgba(120,80,40,.08)}
   .ph-card.cal .dot.hot{background:linear-gradient(135deg,#c0392b,#b8860b);box-shadow:0 0 8px rgba(192,57,43,.4)}
+
+  /* ========== 扇形截图展示（#manage 区块，替代手机 mockup） ========== */
+  .fan{position:relative;width:560px;height:560px;margin:0 auto;max-width:100%;transform:translateY(-48px)}
+  .fan-card{position:absolute;left:50%;bottom:0;width:195px;height:429px;margin-left:-98px;border-radius:26px;overflow:hidden;background:var(--card);border:1px solid var(--card-border);box-shadow:var(--shadow);transform-origin:50% 100%;transition:transform .7s cubic-bezier(.4,.2,.2,1),opacity .6s ease}
+  .fan-card img{width:100%;height:100%;object-fit:cover;display:block}
+  /* 四张截图以底部为轴心扇形展开：两侧倾斜淡显，中间两张清晰 */
+  .fan-card:nth-child(1){transform:rotate(-42deg);opacity:.7;z-index:1}
+  .fan-card:nth-child(2){transform:rotate(-15deg);opacity:1;z-index:3}
+  .fan-card:nth-child(3){transform:rotate(15deg);opacity:1;z-index:2}
+  .fan-card:nth-child(4){transform:rotate(42deg);opacity:.7;z-index:1}
+  /* 悬停扇形时两侧卡片向外展开更明显 */
+  .fan:hover .fan-card:nth-child(1){transform:rotate(-50deg);opacity:.95}
+  .fan:hover .fan-card:nth-child(4){transform:rotate(50deg);opacity:.95}
   .split-text .tag{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--red);font-weight:700;margin-bottom:14px;padding:6px 16px;border:1px solid var(--gold);border-radius:2px;background:var(--card)}
   .split-text h3{font-size:27px;font-weight:800;margin-bottom:14px;letter-spacing:2px}
   .split-text p{color:var(--ink-2);font-size:15px;margin-bottom:14px}
@@ -221,7 +247,7 @@
     .hero .desc{margin-left:auto;margin-right:auto}
     .hero-cta,.hero-meta{justify-content:center}
     .hero-carousel{order:2;margin-top:-20px}
-    .carousel-stage{height:500px}
+    .carousel-stage{height:640px}
   }
   @media(max-width:900px){
     .feat-grid{grid-template-columns:1fr 1fr}
@@ -239,7 +265,7 @@
     .sec-head h2{font-size:26px}
     .hero-meta{gap:22px}
     .hero h1{letter-spacing:6px}
-    .carousel-stage{height:440px}
+    .carousel-stage{height:570px}
     .cslide{width:210px}
     .cslide .shot{width:210px;height:470px}
     .cslide.s1{transform:translate(-125%,-50%) scale(.8) rotateY(34deg)}
@@ -249,17 +275,27 @@
     .cslide.s3{transform:translate(-285%,-50%) scale(.44) rotateY(50deg)}
     .cslide.s-3{transform:translate(185%,-50%) scale(.44) rotateY(-50deg)}
     .carousel-dots{margin-top:48px}
+    .fan{width:420px;height:480px}
+    .fan-card{width:156px;height:364px;margin-left:-78px}
   }
 </style>
 </head>
 <body>
 <div class="grain"></div>
 
+<!-- 语言切换按钮（固定右上角） -->
+<div class="lang-switch">
+  <button type="button" class="active" data-lang="zh">中文</button>
+  <button type="button" data-lang="en">English</button>
+</div>
+
+<!-- ============================ 中文版 ============================ -->
+<div id="lang-zh" lang="zh-CN">
 <!-- 导航 -->
 <nav>
   <div class="wrap nav-in">
     <div class="brand">
-      <img src="意匠引图标.png" alt="iPromptGo 图标" onerror="this.style.display='none'">
+      <img src="imgs/意匠引图标.png" alt="iPromptGo 图标" onerror="this.style.display='none'">
       <b>意匠引 · iPromptGo</b>
     </div>
     <div class="nav-links">
@@ -276,7 +312,7 @@
 <!-- Hero：左介绍层 + 右弧形截图轮播（轮播位于介绍层之下，左侧卡片淡淡透出） -->
 <header class="wrap hero" id="hero">
   <div class="hero-intro">
-    <div class="hero-icon"><img src="意匠引图标.png" alt="意匠引" onerror="this.outerHTML='<div style=width:100%;height:100%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:900;color:#fff>意</div>'"></div>
+    <div class="hero-icon"><img src="imgs/意匠引图标.png" alt="意匠引" onerror="this.outerHTML='<div style=width:100%;height:100%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:900;color:#fff>意</div>'"></div>
     <div class="hero-badge">AI 图片 · 视频提示词智能助手</div>
     <h1>意匠引<span class="en">iPromptGo</span></h1>
     <p class="slogan">意匠生辉 · 引你前行 <b>· Guide Your Creativity</b></p>
@@ -287,6 +323,7 @@
       等主流 AI 创作工具，让灵感即刻落地。
     </p>
     <div class="hero-cta">
+      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
       <a class="store-link" href="#app-store-link" target="_blank" title="App Store 下载">
         <span class="store-top">
           <span class="store-ic store-ic-apple">
@@ -294,8 +331,10 @@
           </span>
           <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
         </span>
-        <img class="store-qr" src="二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
+        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
+      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
       <a class="store-link" href="#google-play-link" target="_blank" title="Google Play 下载">
         <span class="store-top">
           <span class="store-ic">
@@ -303,7 +342,8 @@
           </span>
           <span class="store-tx"><em>Android</em><b>Google Play</b></span>
         </span>
-        <img class="store-qr" src="二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
+        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
       <a class="btn btn-ghost" href="#features">了解功能</a>
     </div>
@@ -346,6 +386,16 @@
         <div class="cslide" data-title="提示词管理" data-desc="自定义关键词 · 排序隐藏恢复">
           <div class="shot"><span class="ph"><span class="ph-ic">🗂</span><span class="ph-txt">提示词管理</span></span></div>
           <div class="cap"><h4>提示词管理</h4><p>自定义关键词 · 排序隐藏恢复</p></div>
+        </div>
+        <!-- [用户核对] 第7张卡片：对应 imgs/AndroidZhs/7.png，标题与描述请按实际截图内容修改 -->
+        <div class="cslide" data-title="个性化设置" data-desc="语言主题 · 个性化体验">
+          <div class="shot"><span class="ph"><span class="ph-ic">⚙</span><span class="ph-txt">个性化设置</span></span></div>
+          <div class="cap"><h4>个性化设置</h4><p>语言主题 · 个性化体验</p></div>
+        </div>
+        <!-- [用户核对] 第8张卡片：对应 imgs/AndroidZhs/8.png，标题与描述请按实际截图内容修改 -->
+        <div class="cslide" data-title="意见反馈" data-desc="提交建议 · 查看历史">
+          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">意见反馈</span></span></div>
+          <div class="cap"><h4>意见反馈</h4><p>提交建议 · 查看历史</p></div>
         </div>
       </div>
       <div class="carousel-dots" id="carDots"></div>
@@ -512,33 +562,11 @@
 <section id="manage">
   <div class="wrap split">
     <div class="split-img reveal">
-      <div class="phone-frame">
-        <div class="island"></div>
-        <div class="phone-screen">
-          <div class="ph-card">
-            <div class="bar w4"></div>
-            <div class="row">
-              <div class="ph-chip"></div><div class="ph-chip pink"></div><div class="ph-chip cyan w2"></div><div class="ph-chip w3"></div>
-            </div>
-            <div class="bar w3" style="margin-top:8px"></div>
-            <div class="row"><div class="ph-chip w3"></div><div class="ph-chip"></div></div>
-          </div>
-          <div class="ph-card">
-            <div class="bar w2"></div>
-            <div class="bar w3"></div>
-            <div class="bar w4" style="margin-top:6px"></div>
-          </div>
-          <div class="ph-card cal">
-            <div class="dot hot"></div><div class="dot"></div><div class="dot hot"></div><div class="dot"></div><div class="dot"></div><div class="dot hot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot hot"></div><div class="dot hot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot hot"></div>
-            <div class="dot hot"></div><div class="dot"></div><div class="dot"></div><div class="dot hot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-          <div class="ph-card">
-            <div class="bar w5"></div>
-            <div class="bar w4"></div>
-          </div>
-          <div class="ph-btn">复制提示词 📋</div>
-        </div>
+      <div class="fan">
+        <div class="fan-card"><img src="imgs/AndroidZhs/3.png" alt="意匠集"></div>
+        <div class="fan-card"><img src="imgs/AndroidZhs/4.png" alt="仪表盘"></div>
+        <div class="fan-card"><img src="imgs/AndroidZhs/6.png" alt="提示词管理"></div>
+        <div class="fan-card"><img src="imgs/AndroidZhs/7.png" alt="设置"></div>
       </div>
     </div>
     <div class="split-text reveal">
@@ -563,6 +591,7 @@
     <h2>现在就开始，生成你的第一段提示词</h2>
     <p>意匠生辉，引你前行 —— iPromptGo，让 AI 创作更高效、更专业。</p>
     <div class="hero-cta">
+      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
       <a class="store-link" href="#app-store-link" target="_blank" title="App Store 下载">
         <span class="store-top">
           <span class="store-ic store-ic-apple">
@@ -570,8 +599,10 @@
           </span>
           <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
         </span>
-        <img class="store-qr" src="二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
+        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
+      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
       <a class="store-link" href="#google-play-link" target="_blank" title="Google Play 下载">
         <span class="store-top">
           <span class="store-ic">
@@ -579,7 +610,8 @@
           </span>
           <span class="store-tx"><em>Android</em><b>Google Play</b></span>
         </span>
-        <img class="store-qr" src="二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
+        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
       <a class="btn btn-ghost" href="#features">回看功能</a>
     </div>
@@ -588,19 +620,376 @@
 
 <footer>
   <div class="wrap">
-    <div class="brand-line"><img src="意匠引图标.png" alt="iPromptGo" onerror="this.style.display='none'"><b>意匠引 · iPromptGo</b></div>
+    <div class="brand-line"><img src="imgs/意匠引图标.png" alt="iPromptGo" onerror="this.style.display='none'"><b>意匠引 · iPromptGo</b></div>
     <p>AI 图片与视频提示词智能助手 · 简体中文 / English · 支持 iOS · Android</p>
     <p style="margin-top:6px;font-size:12px">© 2026 iPromptGo · 本页面为静态宣传页</p>
   </div>
 </footer>
+</div>
+<!-- ============================ 中文版 END ============================ -->
+
+<!-- ============================ English ============================ -->
+<div id="lang-en" lang="en">
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">
+      <img src="imgs/意匠引图标.png" alt="iPromptGo icon" onerror="this.style.display='none'">
+      <b>iPromptGo</b>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#library">Prompt Library</a>
+      <a href="#how">Quick Start</a>
+      <a href="#compat">Compatible Tools</a>
+      <a href="#manage">Manage</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="#cta">Try Now</a>
+  </div>
+</nav>
+
+<header class="wrap hero" id="hero">
+  <div class="hero-intro">
+    <div class="hero-icon"><img src="imgs/意匠引图标.png" alt="iPromptGo" onerror="this.outerHTML='<div style=width:100%;height:100%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:900;color:#fff>i</div>'"></div>
+    <div class="hero-badge">AI Prompt Assistant for Image &amp; Video</div>
+    <h1>iPromptGo<span class="en">意匠引</span></h1>
+    <p class="slogan">Guide Your Creativity <b>· 意匠生辉，引你前行</b></p>
+    <p class="desc">
+      A curated <b>prompt library</b> covering <b>8 image categories</b> and <b>8 video categories</b>.
+      Combine <b>bilingual (Chinese &amp; English)</b> prompts with one tap and copy instantly for
+      <b>Stable Diffusion</b>, <b>Midjourney</b>, <b>Jimeng</b>, <b>Kling</b>, <b>Sora</b>
+      and other popular AI creation tools.
+    </p>
+    <div class="hero-cta">
+      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
+      <a class="store-link" href="#app-store-link" target="_blank" title="Download on the App Store">
+        <span class="store-top">
+          <span class="store-ic store-ic-apple">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          </span>
+          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
+        </span>
+        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
+        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      </a>
+      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
+      <a class="store-link" href="#google-play-link" target="_blank" title="Get it on Google Play">
+        <span class="store-top">
+          <span class="store-ic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          </span>
+          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
+        </span>
+        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
+        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      </a>
+      <a class="btn btn-ghost" href="#features">Learn More</a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="num">8</div><div class="label">Image Categories</div></div>
+      <div class="meta-item"><div class="num">8</div><div class="label">Video Categories</div></div>
+      <div class="meta-item"><div class="num">CN / EN</div><div class="label">Bilingual</div></div>
+      <div class="meta-item"><div class="num">15</div><div class="label">Free Copies / Day</div></div>
+      <div class="meta-item"><div class="num">3</div><div class="label">Quick Steps</div></div>
+    </div>
+  </div>
+
+  <!-- 弧形截图轮播：英文版使用 imgs/AndroidEng/1-8.png -->
+  <div class="hero-carousel">
+    <div class="carousel-stage">
+      <div class="carousel-nav prev" id="carPrev-en">‹</div>
+      <div class="carousel-nav next" id="carNext-en">›</div>
+      <div class="carousel" id="carousel-en">
+        <div class="cslide" data-title="Image Prompts" data-desc="8 categories · one-tap bilingual">
+          <div class="shot"><span class="ph"><span class="ph-ic">🖼</span><span class="ph-txt">Image Prompts</span></span></div>
+          <div class="cap"><h4>Image Prompts</h4><p>8 categories · one-tap bilingual</p></div>
+        </div>
+        <div class="cslide" data-title="Video Prompts" data-desc="Camera moves · transitions · pace">
+          <div class="shot"><span class="ph"><span class="ph-ic">🎬</span><span class="ph-txt">Video Prompts</span></span></div>
+          <div class="cap"><h4>Video Prompts</h4><p>Camera moves · transitions · pace</p></div>
+        </div>
+        <div class="cslide" data-title="Collection" data-desc="Save &amp; manage · reload &amp; edit">
+          <div class="shot"><span class="ph"><span class="ph-ic">📚</span><span class="ph-txt">Collection</span></span></div>
+          <div class="cap"><h4>Collection</h4><p>Save &amp; manage · reload &amp; edit</p></div>
+        </div>
+        <div class="cslide" data-title="Dashboard" data-desc="Trends · contribution calendar">
+          <div class="shot"><span class="ph"><span class="ph-ic">📊</span><span class="ph-txt">Dashboard</span></span></div>
+          <div class="cap"><h4>Dashboard</h4><p>Trends · contribution calendar</p></div>
+        </div>
+        <div class="cslide" data-title="Profile" data-desc="Personal center · settings · feedback">
+          <div class="shot"><span class="ph"><span class="ph-ic">👤</span><span class="ph-txt">Profile</span></span></div>
+          <div class="cap"><h4>Profile</h4><p>Personal center · settings · feedback</p></div>
+        </div>
+        <div class="cslide" data-title="Prompt Management" data-desc="Custom keywords · reorder &amp; hide">
+          <div class="shot"><span class="ph"><span class="ph-ic">🗂</span><span class="ph-txt">Prompt Management</span></span></div>
+          <div class="cap"><h4>Prompt Management</h4><p>Custom keywords · reorder &amp; hide</p></div>
+        </div>
+        <!-- [用户核对] Slide 7：对应 imgs/AndroidEng/7.png，标题与描述请按实际截图内容修改 -->
+        <div class="cslide" data-title="Settings" data-desc="Language &amp; theme · personalization">
+          <div class="shot"><span class="ph"><span class="ph-ic">⚙</span><span class="ph-txt">Settings</span></span></div>
+          <div class="cap"><h4>Settings</h4><p>Language &amp; theme · personalization</p></div>
+        </div>
+        <!-- [用户核对] Slide 8：对应 imgs/AndroidEng/8.png，标题与描述请按实际截图内容修改 -->
+        <div class="cslide" data-title="Feedback" data-desc="Submit suggestions · view history">
+          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">Feedback</span></span></div>
+          <div class="cap"><h4>Feedback</h4><p>Submit suggestions · view history</p></div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carDots-en"></div>
+    </div>
+  </div>
+</header>
+
+<!-- Features -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">FEATURES</span>
+      <h2>Features Crafted with Care</h2>
+      <p>From generation and copy to collection and management — the full AI prompt workflow</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-ico">🖼</div>
+        <h3>Image Prompt Generation</h3>
+        <p>A curated image prompt library covering 8 categories — Subject, Style, Environment, Lighting, Color, Composition, Quality &amp; Artist Reference. Tap tags to combine.</p>
+        <div class="feat-tags"><span class="feat-tag">Bilingual</span><span class="feat-tag">8 Categories</span><span class="feat-tag">Copy &amp; Use</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#b8860b,#c0392b)">🎬</div>
+        <h3>Video Prompt Generation</h3>
+        <p>A video prompt library covering subject, style, camera movement, transitions, pace, lighting, color grading and technical specs, designed for AI video tools.</p>
+        <div class="feat-tags"><span class="feat-tag">Camera Moves</span><span class="feat-tag">Transitions</span><span class="feat-tag">Specs</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#b8860b,#a52a1f)">☯</div>
+        <h3>Positive / Negative Prompts</h3>
+        <p>Generate positive prompts describing what you want and negative prompts to exclude what you don't, in both Chinese and English.</p>
+        <div class="feat-tags"><span class="feat-tag">Positive</span><span class="feat-tag">Negative</span><span class="feat-tag">Bilingual</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">📋</div>
+        <h3>Copy Count &amp; Management</h3>
+        <p>15 free copies per day; the Chinese and English versions of the same keyword set count once. Watch ads for extra copies, reset at midnight.</p>
+        <div class="feat-tags"><span class="feat-tag">Daily Reset</span><span class="feat-tag">+1/+3/+5/+10</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#c0392b,#b8860b)">📚</div>
+        <h3>Collection</h3>
+        <p>Save prompts with one tap — auto-generated titles, bilingual versions saved together, and reload to edit, update or delete anytime.</p>
+        <div class="feat-tags"><span class="feat-tag">Auto Title</span><span class="feat-tag">Reload &amp; Edit</span><span class="feat-tag">Filter</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#b8860b,#a52a1f)">📊</div>
+        <h3>Dashboard &amp; Statistics</h3>
+        <p>Overview of all / image / video prompt counts, daily / weekly / monthly save trend charts, a contribution calendar and recent activity.</p>
+        <div class="feat-tags"><span class="feat-tag">Trends</span><span class="feat-tag">Calendar</span><span class="feat-tag">Activity</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico">✒</div>
+        <h3>Custom Keywords</h3>
+        <p>Add your own bilingual keywords under any subcategory to join system words in prompt generation — build your personal vocabulary.</p>
+        <div class="feat-tags"><span class="feat-tag">Bilingual</span><span class="feat-tag">Personal Library</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#b8860b,#c0392b)">⚙</div>
+        <h3>Prompt Management</h3>
+        <p>View, edit, reorder and delete all keywords; hide or restore built-in keywords, while custom ones apply only within their own type.</p>
+        <div class="feat-tags"><span class="feat-tag">Reorder</span><span class="feat-tag">Hide / Restore</span></div>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" style="background:linear-gradient(135deg,#c0392b,#b8860b)">☀</div>
+        <h3>Personalization</h3>
+        <p>Switch between Chinese / English, follow-system / light / dark themes, category guides; edit profile, change avatar and submit feedback.</p>
+        <div class="feat-tags"><span class="feat-tag">Bilingual</span><span class="feat-tag">Dark Mode</span><span class="feat-tag">Feedback</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prompt Library -->
+<section class="cat-section" id="library">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">PROMPT LIBRARY</span>
+      <h2>Curated Prompt Library</h2>
+      <p>Professional categories with extensive entries for mainstream AI image and video creation</p>
+    </div>
+    <div style="margin-bottom:40px">
+      <div class="cat-sub"><span>I ·</span> Image Prompts — 8 Categories</div>
+      <div class="cat-grid">
+        <div class="cat-card hot reveal"><span class="emoji">👤</span><h4>Subject</h4><p>People / Animals / Scenes</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎨</span><h4>Style</h4><p>Realistic / Anime / Oil / Cyber</p></div>
+        <div class="cat-card reveal"><span class="emoji">🌆</span><h4>Environment</h4><p>Day / Night / Season / Weather</p></div>
+        <div class="cat-card reveal"><span class="emoji">💡</span><h4>Lighting</h4><p>Natural / Neon / Backlight / Studio</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎨</span><h4>Color</h4><p>Tone / Saturation / Palette</p></div>
+        <div class="cat-card reveal"><span class="emoji">📷</span><h4>Composition</h4><p>Shot / Angle / Depth / Frame</p></div>
+        <div class="cat-card reveal"><span class="emoji">⚙️</span><h4>Quality &amp; Details</h4><p>Quality / Resolution / Detail</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎨</span><h4>Artist Reference</h4><p>Master styles &amp; influences</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="cat-sub"><span>II ·</span> Video Prompts — 8 Categories</div>
+      <div class="cat-grid">
+        <div class="cat-card hot reveal"><span class="emoji">👤</span><h4>Subject</h4><p>Character / Object / Scene</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎨</span><h4>Style</h4><p>Cinematic / Anime / Documentary</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎥</span><h4>Camera Movement</h4><p>Dolly / Pan / Follow / Aerial</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎞️</span><h4>Transitions</h4><p>Fade / Wipe / Match Cut</p></div>
+        <div class="cat-card reveal"><span class="emoji">⏱️</span><h4>Pace</h4><p>Fast / Slow / Suspense</p></div>
+        <div class="cat-card reveal"><span class="emoji">💡</span><h4>Lighting</h4><p>Ambient / Key / Effects</p></div>
+        <div class="cat-card reveal"><span class="emoji">🎨</span><h4>Color Grading</h4><p>Cinematic / High Contrast / Morandi</p></div>
+        <div class="cat-card reveal"><span class="emoji">⚙️</span><h4>Technical Specs</h4><p>FPS / Duration / Resolution</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Start -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">QUICK START</span>
+      <h2>Three Simple Steps</h2>
+      <p>No learning curve — ready to use right away</p>
+    </div>
+    <div class="steps">
+      <div class="step-card reveal">
+        <div class="num">1</div>
+        <h3>Pick a Category</h3>
+        <p>From 8 image or video categories, tap positive or negative prompt tags to express your creative intent.</p>
+        <div class="step-arrow">➜</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="num">2</div>
+        <h3>Tap Keywords</h3>
+        <p>Select style, lighting, camera and other keyword tags under each subcategory to compose a complete prompt in real time.</p>
+        <div class="step-arrow">➜</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="num">3</div>
+        <h3>Switch Language &amp; Copy</h3>
+        <p>Toggle between Chinese and English with one tap, copy into your AI tool, and save to your collection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Compatible Tools -->
+<section class="cat-section" id="compat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">COMPATIBLE</span>
+      <h2>Works with Mainstream AI Tools</h2>
+      <p>Generated prompts work directly with popular AI image and video platforms worldwide</p>
+    </div>
+    <div class="tools">
+      <div class="tool-chip reveal"><span class="dot"></span>Stable Diffusion</div>
+      <div class="tool-chip reveal"><span class="dot"></span>Midjourney</div>
+      <div class="tool-chip reveal"><span class="dot"></span>Jimeng</div>
+      <div class="tool-chip reveal"><span class="dot"></span>Kling</div>
+      <div class="tool-chip reveal"><span class="dot"></span>Sora</div>
+      <div class="tool-chip reveal"><span class="dot"></span>ComfyUI</div>
+      <div class="tool-chip reveal"><span class="dot"></span>Flux</div>
+      <div class="tool-chip reveal"><span class="dot"></span>And More</div>
+    </div>
+  </div>
+</section>
+
+<!-- Manage -->
+<section id="manage">
+  <div class="wrap split">
+    <div class="split-img reveal">
+      <div class="fan">
+        <div class="fan-card"><img src="imgs/AndroidEng/3.png" alt="Collection"></div>
+        <div class="fan-card"><img src="imgs/AndroidEng/4.png" alt="Dashboard"></div>
+        <div class="fan-card"><img src="imgs/AndroidEng/6.png" alt="Prompt Management"></div>
+        <div class="fan-card"><img src="imgs/AndroidEng/7.png" alt="Settings"></div>
+      </div>
+    </div>
+    <div class="split-text reveal">
+      <span class="tag">MANAGE</span>
+      <h3>Create, Collect &amp; Manage</h3>
+      <p>Collection, statistics and management in one place — every idea leaves a trace.</p>
+      <ul class="check-list">
+        <li><span class="ck">✓</span><span><b>Collection</b>: save in one tap with auto-generated titles; reload, update or delete anytime.</span></li>
+        <li><span class="ck">✓</span><span><b>Dashboard</b>: totals, daily / weekly / monthly trends, contribution calendar and recent activity.</span></li>
+        <li><span class="ck">✓</span><span><b>Prompt Management</b>: manage custom and system keywords — reorder, hide and restore.</span></li>
+        <li><span class="ck">✓</span><span><b>Custom Keywords</b>: build your own library anytime; image / video types strictly separated.</span></li>
+        <li><span class="ck">✓</span><span><b>Personalization</b>: bilingual switching, dark mode and category guides for a better experience.</span></li>
+        <li><span class="ck">✓</span><span><b>Remove Ads</b>: one-time purchase permanently removes banner, app-open and rewarded ads, with purchase restoration.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="wrap cta" id="cta">
+  <div class="cta-box reveal">
+    <h2>Start Now — Generate Your First Prompt</h2>
+    <p>Guide Your Creativity — iPromptGo makes AI creation faster and more professional.</p>
+    <div class="hero-cta">
+      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
+      <a class="store-link" href="#app-store-link" target="_blank" title="Download on the App Store">
+        <span class="store-top">
+          <span class="store-ic store-ic-apple">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          </span>
+          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
+        </span>
+        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
+        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      </a>
+      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
+      <a class="store-link" href="#google-play-link" target="_blank" title="Get it on Google Play">
+        <span class="store-top">
+          <span class="store-ic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+          </span>
+          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
+        </span>
+        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
+        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      </a>
+      <a class="btn btn-ghost" href="#features">Back to Features</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-line"><img src="imgs/意匠引图标.png" alt="iPromptGo" onerror="this.style.display='none'"><b>iPromptGo</b></div>
+    <p>AI Assistant for Image &amp; Video Prompts · Simplified Chinese / English · iOS · Android</p>
+    <p style="margin-top:6px;font-size:12px">© 2026 iPromptGo · Static landing page</p>
+  </div>
+</footer>
+</div>
+<!-- ============================ English END ============================ -->
 
 <script>
-  // 滚动入场动画
+  // ========== 语言切换 ==========
+  const zh = document.getElementById('lang-zh');
+  const en = document.getElementById('lang-en');
+  const buttons = document.querySelectorAll('.lang-switch button');
+  function setLang(lang) {
+    const showZh = lang === 'zh';
+    zh.style.display = showZh ? 'block' : 'none';
+    en.style.display = showZh ? 'none' : 'block';
+    buttons.forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+    document.documentElement.lang = showZh ? 'zh-CN' : 'en';
+    // 切换后重新触发当前可见容器的入场动画
+    const visible = showZh ? zh : en;
+    visible.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+    });
+  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.getAttribute('data-lang'))));
+
+  // ========== 滚动入场动画（分别观察中英文容器） ==========
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  // 顶部锚点平滑滚动
+  [zh, en].forEach(container => container.querySelectorAll('.reveal').forEach(el => io.observe(el)));
+
+  // ========== 顶部锚点平滑滚动 ==========
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href');
@@ -609,73 +998,95 @@
   });
 
   // ========== 弧形截图轮播 ==========
-  // 截图文件名与功能一一对应：给 .shot 内的 img 设置 src，无截图时显示占位。
-  // 截图文件放在同目录 iPhone截图/ 下，key 为 data-title
-  const SHOT_IMAGES = {
-    '图片提示词': 'iPhone截图/01_图片提示词.png',
-    '视频提示词': 'iPhone截图/02_视频提示词.png',
-    '意匠集': 'iPhone截图/03_意匠集.png',
-    '仪表盘': 'iPhone截图/04_仪表盘.png',
-    '我的': 'iPhone截图/05_我的.png',
-    '提示词管理': 'iPhone截图/06_提示词管理.png',
+  // 截图文件：中文 imgs/AndroidZhs/1-8.png，英文 imgs/AndroidEng/1-8.png，按卡片顺序一一对应。
+  // [用户核对] 若某张截图与实际功能不符，请调整下方映射或卡片 data-title。
+  const SHOT_IMAGES_ZH = {
+    '图片提示词': 'imgs/AndroidZhs/1.png',
+    '视频提示词': 'imgs/AndroidZhs/2.png',
+    '意匠集': 'imgs/AndroidZhs/3.png',
+    '仪表盘': 'imgs/AndroidZhs/4.png',
+    '我的': 'imgs/AndroidZhs/5.png',
+    '提示词管理': 'imgs/AndroidZhs/6.png',
+    '个性化设置': 'imgs/AndroidZhs/7.png',
+    '意见反馈': 'imgs/AndroidZhs/8.png',
   };
-  const carousel = document.getElementById('carousel');
-  const dotsWrap = document.getElementById('carDots');
-  const slides = Array.from(carousel.querySelectorAll('.cslide'));
-  const total = slides.length;
-  let current = 0;
-  let autoTimer = null;
+  const SHOT_IMAGES_EN = {
+    'Image Prompts': 'imgs/AndroidEng/1.png',
+    'Video Prompts': 'imgs/AndroidEng/2.png',
+    'Collection': 'imgs/AndroidEng/3.png',
+    'Dashboard': 'imgs/AndroidEng/4.png',
+    'Profile': 'imgs/AndroidEng/5.png',
+    'Prompt Management': 'imgs/AndroidEng/6.png',
+    'Settings': 'imgs/AndroidEng/7.png',
+    'Feedback': 'imgs/AndroidEng/8.png',
+  };
 
-  // 为每张卡填充截图（找不到图片则保留占位）
-  slides.forEach(slide => {
-    const title = slide.dataset.title;
-    const src = SHOT_IMAGES[title];
-    if (src) {
-      const shot = slide.querySelector('.shot');
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = title;
-      img.onerror = () => img.remove(); // 图片缺失时回退占位
-      shot.insertBefore(img, shot.querySelector('.ph'));
-    }
-  });
+  // 通用轮播初始化：scope 前缀用于区分中英两套（'' 与 '-en'）
+  function initCarousel(suffix, SHOT_IMAGES) {
+    const carousel = document.getElementById('carousel' + suffix);
+    const dotsWrap = document.getElementById('carDots' + suffix);
+    const slides = Array.from(carousel.querySelectorAll('.cslide'));
+    const total = slides.length;
+    let current = 0;
+    let autoTimer = null;
 
-  // 生成指示点
-  slides.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'dot';
-    d.addEventListener('click', () => { goTo(i); restartAuto(); });
-    dotsWrap.appendChild(d);
-  });
-  const dots = Array.from(dotsWrap.children);
-
-  function render() {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('s0','s1','s-1','s2','s-2','s3','s-3','hidden');
-      let d = i - current;
-      // 归一化到 [-3,3]（环形）
-      if (d > 3) d -= total;
-      if (d < -3) d += total;
-      slide.classList.add(d === 0 ? 's0' : 's' + d);
+    // 为每张卡填充截图（图片加载成功时移除占位层；加载失败则移除图片，保留占位）
+    slides.forEach(slide => {
+      const title = slide.dataset.title;
+      const src = SHOT_IMAGES[title];
+      if (src) {
+        const shot = slide.querySelector('.shot');
+        const ph = shot.querySelector('.ph');
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = title;
+        img.onload = () => ph && ph.remove(); // 图片加载成功，移除覆盖的占位层
+        img.onerror = () => img.remove();     // 图片缺失时移除图片，回退占位
+        shot.insertBefore(img, ph);
+      }
     });
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+    // 生成指示点
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot';
+      d.addEventListener('click', () => { goTo(i); restartAuto(); });
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function render() {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('s0','s1','s-1','s2','s-2','s3','s-3','s4','s-4','hidden');
+        // 环形归一化：half = 两侧可显示的层数（如 8 张卡时最大偏移为 4）
+        const half = Math.floor(total / 2);
+        let d = i - current;
+        if (d > half) d -= total;
+        if (d < -half) d += total;
+        slide.classList.add(d === 0 ? 's0' : 's' + d);
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function goTo(i) { current = (i + total) % total; render(); }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+    function restartAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(next, 3200);
+    }
+
+    document.getElementById('carNext' + suffix).addEventListener('click', () => { next(); restartAuto(); });
+    document.getElementById('carPrev' + suffix).addEventListener('click', () => { prev(); restartAuto(); });
+    // 点击中央卡片也切换
+    slides.forEach((slide, i) => slide.addEventListener('click', () => { goTo(i); restartAuto(); }));
+
+    render();
+    restartAuto();
   }
 
-  function goTo(i) { current = (i + total) % total; render(); }
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
-  function restartAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(next, 3200);
-  }
-
-  document.getElementById('carNext').addEventListener('click', () => { next(); restartAuto(); });
-  document.getElementById('carPrev').addEventListener('click', () => { prev(); restartAuto(); });
-  // 点击中央卡片也切换
-  slides.forEach((slide, i) => slide.addEventListener('click', () => { goTo(i); restartAuto(); }));
-
-  render();
-  restartAuto();
+  initCarousel('', SHOT_IMAGES_ZH);
+  initCarousel('-en', SHOT_IMAGES_EN);
 </script>
 </body>
 </html>
