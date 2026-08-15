@@ -57,12 +57,12 @@
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{color:var(--ink-2);text-decoration:none;font-size:14px;letter-spacing:1px;transition:.2s}
   .nav-links a:hover{color:var(--red)}
-  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-weight:600;text-decoration:none;transition:.25s;border-radius:6px;letter-spacing:1px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-weight:600;text-decoration:none;transition:.25s;border-radius:6px;letter-spacing:1px;white-space:nowrap}
   .btn-primary{background:var(--grad);color:#fff;padding:13px 30px;font-size:16px;box-shadow:var(--shadow)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(192,57,43,.3)}
   .btn-ghost{background:var(--card);color:var(--red);border:1px solid var(--red);padding:11px 26px;font-size:15px}
   .btn-ghost:hover{background:rgba(192,57,43,.06)}
-  .btn-sm{padding:7px 18px;font-size:13px;border-radius:5px}
+  .btn-sm{padding:6px 14px;font-size:12px;border-radius:5px;flex-shrink:0}
   /* 应用商店下载：链接 + 二维码（二维码在平台下方） */
   .store-link{display:inline-flex;flex-direction:column;align-items:center;gap:10px;background:var(--card);border:1px solid var(--gold);border-radius:10px;padding:12px 16px 14px;text-decoration:none;transition:.25s;box-shadow:var(--shadow)}
   .store-link:hover{transform:translateY(-2px);border-color:var(--red);box-shadow:0 16px 36px rgba(192,57,43,.18)}
@@ -74,6 +74,8 @@
   .store-tx em{font-style:normal;font-size:11px;color:var(--ink-3);letter-spacing:1px}
   .store-tx b{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:1px;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
   .store-qr{width:150px;height:150px;border-radius:8px;border:1px solid var(--card-border);background:#fff;object-fit:contain;margin-top:2px}
+  /* 官方应用商店徽章图：保持图标原始尺寸不缩放，卡片内水平居中对齐 */
+  .store-badge{width:auto;height:auto;object-fit:contain;max-width:100%}
   .store-qr[src*="二维码"],.qr-ph{background:repeating-conic-gradient(#f3ead6 0% 25%,#fff 0% 50%) 50%/14px 14px}
   .qr-ph{width:150px;height:150px;border-radius:8px;border:1px dashed var(--gold);display:flex;align-items:center;justify-content:center;color:var(--ink-2);font-size:14px;letter-spacing:2px;margin-top:2px}
 
@@ -93,11 +95,11 @@
   .hero .desc{max-width:520px;margin:14px 0 30px;color:var(--ink-2);font-size:15px}
   .hero .desc b{color:var(--red-deep)}
   .hero-cta{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap}
-  .hero-meta{margin-top:32px;display:flex;justify-content:flex-start;gap:18px;flex-wrap:wrap}
-  .meta-item{text-align:center;padding:0 12px;position:relative}
+  .hero-meta{margin-top:28px;display:flex;justify-content:flex-start;align-items:center;gap:10px;flex-wrap:nowrap}
+  .meta-item{text-align:center;padding:0 8px;position:relative;flex-shrink:0}
   .meta-item:not(:last-child)::after{content:"";position:absolute;right:-9px;top:12%;height:76%;width:1px;background:var(--card-border)}
-  .meta-item .num{font-size:22px;font-weight:800;color:var(--red);letter-spacing:1px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;white-space:nowrap}
-  .meta-item .label{font-size:12px;color:var(--ink-3);margin-top:3px;letter-spacing:1px;white-space:nowrap}
+  .meta-item .num{font-size:19px;font-weight:800;color:var(--red);letter-spacing:1px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;white-space:nowrap}
+  .meta-item .label{font-size:11px;color:var(--ink-3);margin-top:3px;letter-spacing:1px;white-space:nowrap}
 
   /* ========== 弧形截图轮播（置于 Hero 右栏，层序在介绍层之下） ========== */
   .hero-carousel{position:relative;z-index:1}
@@ -263,7 +265,7 @@
     .feat-grid{grid-template-columns:1fr}
     .hero{padding:48px 0 70px}
     .sec-head h2{font-size:26px}
-    .hero-meta{gap:22px}
+    .hero-meta{gap:22px;flex-wrap:wrap;justify-content:center}
     .hero h1{letter-spacing:6px}
     .carousel-stage{height:570px}
     .cslide{width:210px}
@@ -323,29 +325,16 @@
       等主流 AI 创作工具，让灵感即刻落地。
     </p>
     <div class="hero-cta">
-      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
-      <a class="store-link" href="#app-store-link" target="_blank" title="App Store 下载">
-        <span class="store-top">
-          <span class="store-ic store-ic-apple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          </span>
-          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
-        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+      <!-- App Store 下载：官方徽章图 + 下载二维码（App ID: id6799104342） -->
+      <a class="store-link" href="https://apps.apple.com/app/id6799104342" target="_blank" title="App Store 下载">
+        <img class="store-badge" src="imgs/AppStoreLogo/CN(SC)/Download_on_App_Store/Black_lockup/SVG/Download_on_the_App_Store_Badge_CNSC_RGB_blk_092917.svg" alt="Download on the App Store">
+        <img class="store-qr" src="imgs/iPromptGoAppStore下载二维码.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
-      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
-      <a class="store-link" href="#google-play-link" target="_blank" title="Google Play 下载">
-        <span class="store-top">
-          <span class="store-ic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-          </span>
-          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
-        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+      <!-- Google Play 下载：官方徽章图 + 下载二维码（包名: com.ipromptgo.androidapp） -->
+      <a class="store-link" href="https://play.google.com/store/apps/details?id=com.ipromptgo.androidapp" target="_blank" title="Google Play 下载">
+        <img class="store-badge" src="imgs/GooglePlayLogo/lockup_Google_Play_RGB_color_horizontal_173x35px.png" alt="Get it on Google Play">
+        <img class="store-qr" src="imgs/iPromptGoGooglePalyApp下载二维码.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
-      <a class="btn btn-ghost" href="#features">了解功能</a>
     </div>
     <div class="hero-meta">
       <div class="meta-item"><div class="num">8</div><div class="label">图片分类</div></div>
@@ -353,6 +342,7 @@
       <div class="meta-item"><div class="num">中 / EN</div><div class="label">双语输出</div></div>
       <div class="meta-item"><div class="num">15 次</div><div class="label">每日免费复制</div></div>
       <div class="meta-item"><div class="num">3 步</div><div class="label">快速上手</div></div>
+      <a class="btn btn-ghost btn-sm" href="#features">了解功能</a>
     </div>
   </div>
 
@@ -363,10 +353,14 @@
       <div class="carousel-nav next" id="carNext">›</div>
       <div class="carousel" id="carousel">
         <!-- 轮播卡片：data-title / data-desc 为功能文案，img 标签 src 指向截图文件 -->
-        <div class="cslide" data-title="图片提示词" data-desc="8 大分类 · 中英一键生成">
-          <div class="shot"><span class="ph"><span class="ph-ic">🖼</span><span class="ph-txt">图片提示词</span></span></div>
-          <div class="cap"><h4>图片提示词</h4><p>8 大分类 · 中英一键生成</p></div>
+        <div class="cslide" data-title="意匠引" data-desc="意匠生辉 · 引你前行">
+          <div class="shot"><span class="ph"><span class="ph-ic">🖼</span><span class="ph-txt">意匠引</span></span></div>
+          <div class="cap"><h4>意匠引</h4><p>意匠生辉 · 引你前行</p></div>
         </div>
+        <div class="cslide" data-title="智能助手" data-desc="AI图片、视频提示词智能助手">
+          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">智能助手</span></span></div>
+          <div class="cap"><h4>智能助手</h4><p>AI图片、视频提示词智能助手</p></div>
+        </div>        
         <div class="cslide" data-title="视频提示词" data-desc="镜头运镜 · 节奏转场组合">
           <div class="shot"><span class="ph"><span class="ph-ic">🎬</span><span class="ph-txt">视频提示词</span></span></div>
           <div class="cap"><h4>视频提示词</h4><p>镜头运镜 · 节奏转场组合</p></div>
@@ -388,15 +382,11 @@
           <div class="cap"><h4>提示词管理</h4><p>自定义关键词 · 排序隐藏恢复</p></div>
         </div>
         <!-- [用户核对] 第7张卡片：对应 imgs/AndroidZhs/7.png，标题与描述请按实际截图内容修改 -->
-        <div class="cslide" data-title="个性化设置" data-desc="语言主题 · 个性化体验">
-          <div class="shot"><span class="ph"><span class="ph-ic">⚙</span><span class="ph-txt">个性化设置</span></span></div>
-          <div class="cap"><h4>个性化设置</h4><p>语言主题 · 个性化体验</p></div>
+        <div class="cslide" data-title="使用帮助" data-desc="完整的使用说明 · 个性化体验">
+          <div class="shot"><span class="ph"><span class="ph-ic">⚙</span><span class="ph-txt">使用帮助</span></span></div>
+          <div class="cap"><h4>使用帮助</h4><p>完整的使用说明 · 个性化体验</p></div>
         </div>
-        <!-- [用户核对] 第8张卡片：对应 imgs/AndroidZhs/8.png，标题与描述请按实际截图内容修改 -->
-        <div class="cslide" data-title="意见反馈" data-desc="提交建议 · 查看历史">
-          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">意见反馈</span></span></div>
-          <div class="cap"><h4>意见反馈</h4><p>提交建议 · 查看历史</p></div>
-        </div>
+
       </div>
       <div class="carousel-dots" id="carDots"></div>
     </div>
@@ -591,27 +581,15 @@
     <h2>现在就开始，生成你的第一段提示词</h2>
     <p>意匠生辉，引你前行 —— iPromptGo，让 AI 创作更高效、更专业。</p>
     <div class="hero-cta">
-      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
-      <a class="store-link" href="#app-store-link" target="_blank" title="App Store 下载">
-        <span class="store-top">
-          <span class="store-ic store-ic-apple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          </span>
-          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
-        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+      <!-- App Store 下载：官方徽章图 + 下载二维码（App ID: id6799104342） -->
+      <a class="store-link" href="https://apps.apple.com/app/id6799104342" target="_blank" title="App Store 下载">
+        <img class="store-badge" src="imgs/AppStoreLogo/CN(SC)/Download_on_App_Store/Black_lockup/SVG/Download_on_the_App_Store_Badge_CNSC_RGB_blk_092917.svg" alt="Download on the App Store">
+        <img class="store-qr" src="imgs/iPromptGoAppStore下载二维码.png" alt="App Store 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
-      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
-      <a class="store-link" href="#google-play-link" target="_blank" title="Google Play 下载">
-        <span class="store-top">
-          <span class="store-ic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-          </span>
-          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
-        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
+      <!-- Google Play 下载：官方徽章图 + 下载二维码（包名: com.ipromptgo.androidapp） -->
+      <a class="store-link" href="https://play.google.com/store/apps/details?id=com.ipromptgo.androidapp" target="_blank" title="Google Play 下载">
+        <img class="store-badge" src="imgs/GooglePlayLogo/lockup_Google_Play_RGB_color_horizontal_173x35px.png" alt="Get it on Google Play">
+        <img class="store-qr" src="imgs/iPromptGoGooglePalyApp下载二维码.png" alt="Google Play 二维码" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>扫码下载</span>'">
       </a>
       <a class="btn btn-ghost" href="#features">回看功能</a>
     </div>
@@ -660,29 +638,16 @@
       and other popular AI creation tools.
     </p>
     <div class="hero-cta">
-      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
-      <a class="store-link" href="#app-store-link" target="_blank" title="Download on the App Store">
-        <span class="store-top">
-          <span class="store-ic store-ic-apple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          </span>
-          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
-        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      <!-- App Store download: official badge + QR code (App ID: id6799104342) -->
+      <a class="store-link" href="https://apps.apple.com/app/id6799104342" target="_blank" title="Download on the App Store">
+        <img class="store-badge" src="imgs/AppStoreLogo/US/Download_on_App_Store/Black_lockup/SVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store">
+        <img class="store-qr" src="imgs/iPromptGoAppStore下载二维码.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
       </a>
-      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
-      <a class="store-link" href="#google-play-link" target="_blank" title="Get it on Google Play">
-        <span class="store-top">
-          <span class="store-ic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-          </span>
-          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
-        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      <!-- Google Play download: official badge + QR code (package: com.ipromptgo.androidapp) -->
+      <a class="store-link" href="https://play.google.com/store/apps/details?id=com.ipromptgo.androidapp" target="_blank" title="Get it on Google Play">
+        <img class="store-badge" src="imgs/GooglePlayLogo/lockup_Google_Play_RGB_color_horizontal_173x35px.png" alt="Get it on Google Play">
+        <img class="store-qr" src="imgs/iPromptGoGooglePalyApp下载二维码.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
       </a>
-      <a class="btn btn-ghost" href="#features">Learn More</a>
     </div>
     <div class="hero-meta">
       <div class="meta-item"><div class="num">8</div><div class="label">Image Categories</div></div>
@@ -690,6 +655,7 @@
       <div class="meta-item"><div class="num">CN / EN</div><div class="label">Bilingual</div></div>
       <div class="meta-item"><div class="num">15</div><div class="label">Free Copies / Day</div></div>
       <div class="meta-item"><div class="num">3</div><div class="label">Quick Steps</div></div>
+      <a class="btn btn-ghost btn-sm" href="#features">Learn More</a>
     </div>
   </div>
 
@@ -699,10 +665,14 @@
       <div class="carousel-nav prev" id="carPrev-en">‹</div>
       <div class="carousel-nav next" id="carNext-en">›</div>
       <div class="carousel" id="carousel-en">
-        <div class="cslide" data-title="Image Prompts" data-desc="8 categories · one-tap bilingual">
-          <div class="shot"><span class="ph"><span class="ph-ic">🖼</span><span class="ph-txt">Image Prompts</span></span></div>
-          <div class="cap"><h4>Image Prompts</h4><p>8 categories · one-tap bilingual</p></div>
+        <div class="cslide" data-title="iPromptGo" data-desc="Guide Your Creativity">
+          <div class="shot"><span class="ph"><span class="ph-ic">🖼</span><span class="ph-txt">iPromptGo</span></span></div>
+          <div class="cap"><h4>iPromptGo</h4><p>Guide Your Creativity</p></div>
         </div>
+        <div class="cslide" data-title="AIAgent" data-desc="AI Image &amp; Video Prompt Assistant">
+          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">AIAgent</span></span></div>
+          <div class="cap"><h4>AI Assistant</h4><p>AI Image &amp; Video Prompt Assistant</p></div>
+        </div>        
         <div class="cslide" data-title="Video Prompts" data-desc="Camera moves · transitions · pace">
           <div class="shot"><span class="ph"><span class="ph-ic">🎬</span><span class="ph-txt">Video Prompts</span></span></div>
           <div class="cap"><h4>Video Prompts</h4><p>Camera moves · transitions · pace</p></div>
@@ -726,12 +696,7 @@
         <!-- [用户核对] Slide 7：对应 imgs/AndroidEng/7.png，标题与描述请按实际截图内容修改 -->
         <div class="cslide" data-title="Settings" data-desc="Language &amp; theme · personalization">
           <div class="shot"><span class="ph"><span class="ph-ic">⚙</span><span class="ph-txt">Settings</span></span></div>
-          <div class="cap"><h4>Settings</h4><p>Language &amp; theme · personalization</p></div>
-        </div>
-        <!-- [用户核对] Slide 8：对应 imgs/AndroidEng/8.png，标题与描述请按实际截图内容修改 -->
-        <div class="cslide" data-title="Feedback" data-desc="Submit suggestions · view history">
-          <div class="shot"><span class="ph"><span class="ph-ic">📝</span><span class="ph-txt">Feedback</span></span></div>
-          <div class="cap"><h4>Feedback</h4><p>Submit suggestions · view history</p></div>
+          <div class="cap"><h4>User Guide</h4><p>From Image to Videos, Everything You Need to Know</p></div>
         </div>
       </div>
       <div class="carousel-dots" id="carDots-en"></div>
@@ -927,27 +892,15 @@
     <h2>Start Now — Generate Your First Prompt</h2>
     <p>Guide Your Creativity — iPromptGo makes AI creation faster and more professional.</p>
     <div class="hero-cta">
-      <!-- [用户待补] 商店链接：将下方 href="#app-store-link" 替换为 App Store 真实下载地址 -->
-      <a class="store-link" href="#app-store-link" target="_blank" title="Download on the App Store">
-        <span class="store-top">
-          <span class="store-ic store-ic-apple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20" fill="#fff"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-          </span>
-          <span class="store-tx"><em>iPhone</em><b>App Store</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 App Store 二维码图放到 imgs/二维码/AppStore.png（目录 imgs/二维码/ 需自行创建） -->
-        <img class="store-qr" src="imgs/二维码/AppStore.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      <!-- App Store download: official badge + QR code (App ID: id6799104342) -->
+      <a class="store-link" href="https://apps.apple.com/app/id6799104342" target="_blank" title="Download on the App Store">
+        <img class="store-badge" src="imgs/AppStoreLogo/US/Download_on_App_Store/Black_lockup/SVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store">
+        <img class="store-qr" src="imgs/iPromptGoAppStore下载二维码.png" alt="App Store QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
       </a>
-      <!-- [用户待补] 商店链接：将下方 href="#google-play-link" 替换为 Google Play 真实下载地址 -->
-      <a class="store-link" href="#google-play-link" target="_blank" title="Get it on Google Play">
-        <span class="store-top">
-          <span class="store-ic">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="22" height="22"><path fill="#4285F4" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/><path fill="#FBBC04" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/><path fill="#34A853" d="M425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/><path fill="#EA4335" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-          </span>
-          <span class="store-tx"><em>Android</em><b>Google Play</b></span>
-        </span>
-        <!-- [用户待补] 二维码图片：请将 Google Play 二维码图放到 imgs/二维码/GooglePlay.png -->
-        <img class="store-qr" src="imgs/二维码/GooglePlay.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
+      <!-- Google Play download: official badge + QR code (package: com.ipromptgo.androidapp) -->
+      <a class="store-link" href="https://play.google.com/store/apps/details?id=com.ipromptgo.androidapp" target="_blank" title="Get it on Google Play">
+        <img class="store-badge" src="imgs/GooglePlayLogo/lockup_Google_Play_RGB_color_horizontal_173x35px.png" alt="Get it on Google Play">
+        <img class="store-qr" src="imgs/iPromptGoGooglePalyApp下载二维码.png" alt="Google Play QR Code" onerror="this.outerHTML='<span class=&quot;qr-ph&quot;>Scan to Download</span>'">
       </a>
       <a class="btn btn-ghost" href="#features">Back to Features</a>
     </div>
@@ -1001,24 +954,24 @@
   // 截图文件：中文 imgs/AndroidZhs/1-8.png，英文 imgs/AndroidEng/1-8.png，按卡片顺序一一对应。
   // [用户核对] 若某张截图与实际功能不符，请调整下方映射或卡片 data-title。
   const SHOT_IMAGES_ZH = {
-    '图片提示词': 'imgs/AndroidZhs/1.png',
-    '视频提示词': 'imgs/AndroidZhs/2.png',
-    '意匠集': 'imgs/AndroidZhs/3.png',
-    '仪表盘': 'imgs/AndroidZhs/4.png',
-    '我的': 'imgs/AndroidZhs/5.png',
+    '意匠引': 'imgs/AndroidZhs/1.png',
+    '智能助手': 'imgs/AndroidZhs/2.png',
+    '视频提示词': 'imgs/AndroidZhs/3.png',
+    '意匠集': 'imgs/AndroidZhs/4.png',
+    '仪表盘': 'imgs/AndroidZhs/5.png',
+    '我的': 'imgs/AndroidZhs/8.png',
     '提示词管理': 'imgs/AndroidZhs/6.png',
-    '个性化设置': 'imgs/AndroidZhs/7.png',
-    '意见反馈': 'imgs/AndroidZhs/8.png',
+    '使用帮助': 'imgs/AndroidZhs/7.png',
   };
   const SHOT_IMAGES_EN = {
-    'Image Prompts': 'imgs/AndroidEng/1.png',
-    'Video Prompts': 'imgs/AndroidEng/2.png',
-    'Collection': 'imgs/AndroidEng/3.png',
-    'Dashboard': 'imgs/AndroidEng/4.png',
-    'Profile': 'imgs/AndroidEng/5.png',
+    'iPromptGo': 'imgs/AndroidEng/1.png',
+    'AIAgent': 'imgs/AndroidEng/2.png',
+    'Video Prompts': 'imgs/AndroidEng/3.png',
+    'Collection': 'imgs/AndroidEng/4.png',
+    'Dashboard': 'imgs/AndroidEng/5.png',
+    'Profile': 'imgs/AndroidEng/8.png',
     'Prompt Management': 'imgs/AndroidEng/6.png',
     'Settings': 'imgs/AndroidEng/7.png',
-    'Feedback': 'imgs/AndroidEng/8.png',
   };
 
   // 通用轮播初始化：scope 前缀用于区分中英两套（'' 与 '-en'）
