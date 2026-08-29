@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
     "categories": [
         {
             "key": "subject",
@@ -61,6 +61,12 @@
               "zh": "芭比",
               "en": "a barbie doll"
                         }
+             ,
+            {
+              "id": "kw_1787933093889",
+              "zh": "巫师",
+              "en": "a wizard"
+                        }         
                     ]
                 },
                 {
